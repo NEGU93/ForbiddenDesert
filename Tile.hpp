@@ -1,9 +1,9 @@
 #ifndef TILES_H_INCLUDED
 #define TILES_H_INCLUDED
 
-#include "def.h"
-#include "allegro.h"
-#include "Button.h"
+#include "def.hpp"
+#include "allegro.hpp"
+#include "Button.hpp"
 
 enum TilesEnum { STORM, CRASHSITE, WATER, DEFAULT, TUNNEL, LAUNCHPAD, 
 	GEAR1, GEAR2, GEAR3, GEAR4, GEAR5, GEAR6, GEAR7, GEAR8, 

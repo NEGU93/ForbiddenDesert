@@ -1,4 +1,4 @@
-#include "Game.h"
+#include "Game.hpp"
 #include <cstdlib>
 #include <array>
 //Used to shuffle
@@ -266,7 +266,7 @@ bool Game::receiveHandler(ALL* allegro) {
 				al_flip_display(); 
 				gamePack.ack();
 				gamePack.sendPack();
-				Sleep(TIME_TERRASCOPE);
+				usleep(TIME_TERRASCOPE);
 				tilesDeck[character2->getCardIndex()]->setSand(backup);
 				tilesDeck[character2->getCardIndex()]->setTurned(false);
 				break;
@@ -918,7 +918,7 @@ void Game::performStormCardAction(ALL *allegro, StormCardsEnum cardEnum) {
 		}
 		updateScreen(allegro);
 		stormCardsDeck[0]->showImage(allegro);
-		Sleep(600);
+		usleep(600);
 	case RIGHT2:
 		cout << "Right" << endl;
 		i = 0;
@@ -942,7 +942,7 @@ void Game::performStormCardAction(ALL *allegro, StormCardsEnum cardEnum) {
 		}
 		updateScreen(allegro);
 		stormCardsDeck[0]->showImage(allegro);
-		Sleep(600);
+		usleep(600);
 	case RIGHT1:
 		cout << "Right" << endl;
 		i = 0;
@@ -966,7 +966,7 @@ void Game::performStormCardAction(ALL *allegro, StormCardsEnum cardEnum) {
 		}
 		updateScreen(allegro);
 		stormCardsDeck[0]->showImage(allegro);
-		Sleep(600);
+		usleep(600);
 		break;
 	case UP3:
 		cout << "Up" << endl;
@@ -991,7 +991,7 @@ void Game::performStormCardAction(ALL *allegro, StormCardsEnum cardEnum) {
 		}
 		updateScreen(allegro);
 		stormCardsDeck[0]->showImage(allegro);
-		Sleep(600);
+		usleep(600);
 	case UP2:
 		cout << "Up" << endl;
 		i = 0;
@@ -1015,7 +1015,7 @@ void Game::performStormCardAction(ALL *allegro, StormCardsEnum cardEnum) {
 		}
 		updateScreen(allegro);
 		stormCardsDeck[0]->showImage(allegro);
-		Sleep(600);
+		usleep(600);
 	case UP1:
 		cout << "Up" << endl;
 		i = 0;
@@ -1039,7 +1039,7 @@ void Game::performStormCardAction(ALL *allegro, StormCardsEnum cardEnum) {
 		}
 		updateScreen(allegro);
 		stormCardsDeck[0]->showImage(allegro);
-		Sleep(600);
+		usleep(600);
 		break;
 	case LEFT3:
 		cout << "Left" << endl;
@@ -1064,7 +1064,7 @@ void Game::performStormCardAction(ALL *allegro, StormCardsEnum cardEnum) {
 		}
 		updateScreen(allegro);
 		stormCardsDeck[0]->showImage(allegro);
-		Sleep(600);
+		usleep(600);
 	case LEFT2:
 		cout << "Left" << endl;
 		i = 0;
@@ -1088,7 +1088,7 @@ void Game::performStormCardAction(ALL *allegro, StormCardsEnum cardEnum) {
 		}
 		updateScreen(allegro);
 		stormCardsDeck[0]->showImage(allegro);
-		Sleep(600);
+		usleep(600);
 	case LEFT1:
 		cout << "Left" << endl;
 		i = 0;
@@ -1112,7 +1112,7 @@ void Game::performStormCardAction(ALL *allegro, StormCardsEnum cardEnum) {
 		}
 		updateScreen(allegro);
 		stormCardsDeck[0]->showImage(allegro);
-		Sleep(600);
+		usleep(600);
 		break;
 	case DOWN3:
 		cout << "Down" << endl;
@@ -1137,7 +1137,7 @@ void Game::performStormCardAction(ALL *allegro, StormCardsEnum cardEnum) {
 		}
 		updateScreen(allegro);
 		stormCardsDeck[0]->showImage(allegro);
-		Sleep(600);
+		usleep(600);
 	case DOWN2:
 		cout << "Down" << endl;
 		i = 0;
@@ -1161,7 +1161,7 @@ void Game::performStormCardAction(ALL *allegro, StormCardsEnum cardEnum) {
 		}
 		updateScreen(allegro);
 		stormCardsDeck[0]->showImage(allegro);
-		Sleep(600);
+		usleep(600);
 	case DOWN1:
 		cout << "Down" << endl;
 		i = 0;
@@ -1185,7 +1185,7 @@ void Game::performStormCardAction(ALL *allegro, StormCardsEnum cardEnum) {
 		}
 		updateScreen(allegro);
 		stormCardsDeck[0]->showImage(allegro);
-		Sleep(600);
+		usleep(600);
 		break;
 	case SUNBEATSDOWN:
 		cout << "Sun Beats Down" << endl;
@@ -1208,7 +1208,7 @@ void Game::performStormCardAction(ALL *allegro, StormCardsEnum cardEnum) {
 			character2->addWater();
 		updateScreen(allegro);
 		stormCardsDeck[0]->showImage(allegro);
-		Sleep(600);
+		usleep(600);
 		break;
 	case STORMUP:
 		cout << "Storm Pick Up" << endl;
@@ -1216,7 +1216,7 @@ void Game::performStormCardAction(ALL *allegro, StormCardsEnum cardEnum) {
 		sandStormLevel++;
 		updateScreen(allegro);
 		stormCardsDeck[0]->showImage(allegro);
-		Sleep(600);
+		usleep(600);
 	};
 
 	rotate(stormCardsDeck.begin(), stormCardsDeck.begin() + 1, stormCardsDeck.end());
@@ -1501,7 +1501,7 @@ void Game::keyUp(ALL *allegro) {
 									gamePack.requestmove(character2->getRow(), character2->getColumn());
 									gamePack.sendPack();
 									gamePack.waitForAck(allegro);
-									Sleep(100);
+									usleep(100);
 									gamePack.move(character->getRow(), character->getColumn());
 									gamePack.sendPack();
 									gamePack.waitForAck(allegro);
@@ -1585,7 +1585,7 @@ void Game::keyDown(ALL *allegro) {
 									gamePack.requestmove(character2->getRow(), character2->getColumn());
 									gamePack.sendPack();
 									gamePack.waitForAck(allegro);
-									Sleep(100);
+									usleep(100);
 									gamePack.move(character->getRow(), character->getColumn());
 									gamePack.sendPack();
 									gamePack.waitForAck(allegro);
@@ -1671,7 +1671,7 @@ void Game::keyRight(ALL *allegro) {
 									gamePack.requestmove(character2->getRow(), character2->getColumn());
 									gamePack.sendPack();
 									gamePack.waitForAck(allegro);
-									Sleep(100);
+									usleep(100);
 									gamePack.move(character->getRow(), character->getColumn());
 									gamePack.sendPack();
 									gamePack.waitForAck(allegro);
@@ -1757,7 +1757,7 @@ void Game::keyLeft(ALL *allegro) {
 									gamePack.requestmove(character2->getRow(), character2->getColumn());
 									gamePack.sendPack();
 									gamePack.waitForAck(allegro);
-									Sleep(100);
+									usleep(100);
 									gamePack.move(character->getRow(), character->getColumn());
 									gamePack.sendPack();
 									gamePack.waitForAck(allegro);
@@ -2146,7 +2146,7 @@ void Game::clickOnTerrascopeMode(ALL* allegro) {
 			al_flip_display();
 			gamePack.playequipment(TERRASCOPE, i % 5, i / 5);
 			gamePack.sendPack();
-			Sleep(3500);
+			usleep(3500);
 			tilesDeck[i]->setSand(backup);
 			tilesDeck[i]->setTurned(false);
 			//Polonet

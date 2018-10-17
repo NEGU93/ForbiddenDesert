@@ -1,5 +1,5 @@
-#include "allegro.h"
-#include "def.h"
+#include "allegro.hpp"
+#include "def.hpp"
 
 
 #define FPS 30

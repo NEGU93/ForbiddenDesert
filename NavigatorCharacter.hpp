@@ -1,7 +1,7 @@
 #ifndef NAVIGATORCHARACTER_H_
 #define NAVIGATORCHARACTER_H_
 
-#include "Character.h"
+#include "Character.hpp"
 
 class NavigatorCharacter : public Character{
 public:

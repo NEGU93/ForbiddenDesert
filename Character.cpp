@@ -1,4 +1,4 @@
-#include "Character.h"
+#include "Character.hpp"
 
 Character::Character() {
 		row = 0;

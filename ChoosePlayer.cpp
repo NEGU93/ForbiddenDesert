@@ -1,4 +1,4 @@
-#include "ChoosePlayer.h"
+#include "ChoosePlayer.hpp"
 
 ChoosePlayer::ChoosePlayer(ALL *allegro, char *rol1, char *rol2) {
 	initializeAllegro(allegro);

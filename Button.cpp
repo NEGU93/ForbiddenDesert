@@ -1,4 +1,4 @@
-#include "Button.h"
+#include "Button.hpp"
 
 Button::Button() {}
 Button::Button(int x0, int y0, const char * imageName, const char * nonSelectedImageName, ALL* allegro) {

@@ -1,8 +1,8 @@
 #ifndef STORMCARD_H_INCLUDED
 #define STORMCARD_H_INCLUDED
 
-#include "def.h"
-#include "allegro.h"
+#include "def.hpp"
+#include "allegro.hpp"
 
 enum StormCardsEnum { SUNBEATSDOWN, STORMUP,
 	RIGHT1, LEFT1, UP1, DOWN1,

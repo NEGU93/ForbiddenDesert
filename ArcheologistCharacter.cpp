@@ -1,4 +1,4 @@
-#include "ArcheologistCharacter.h"
+#include "ArcheologistCharacter.hpp"
 
 
 ArcheologistCharacter::ArcheologistCharacter(int rowSet, int columnSet, Container info, ALL* allegro) : Character(rowSet, columnSet, info, allegro) {

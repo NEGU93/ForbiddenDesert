@@ -1,7 +1,7 @@
 #ifndef EXPLORERBUTTON_H_INCLUDED
 #define EXPLORERBUTTON_H_INCLUDED
 
-#include "Button.h"
+#include "Button.hpp"
 
 class ExplorerButton : public Button {
 public:

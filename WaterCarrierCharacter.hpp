@@ -1,7 +1,7 @@
 #ifndef WATERCARRIERCHARACTER_H_INCLUDED
 #define WATERCARRIERCHARACTER_H_INCLUDED
 
-#include "Character.h"
+#include "Character.hpp"
 
 class WaterCarrierCharacter : public Character {
 public:

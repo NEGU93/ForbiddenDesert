@@ -1,9 +1,9 @@
 #ifndef CHARACTER_H_INCLUDED
 #define CHARACTER_H_INCLUDED
 
-#include "def.h"
-#include "Packages.h"
-#include "allegro.h"
+#include "def.hpp"
+#include "Packages.hpp"
+#include "allegro.hpp"
 
 #define MAXOFWATERS 7 //for the array of watersImage for each character
 

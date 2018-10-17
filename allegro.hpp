@@ -2,13 +2,13 @@
 #define ALLEGRO_H_INCLUDED
 
 #define ALLEGRO_STATICLINK 
-#include <allegro5\allegro.h>
-#include <allegro5\allegro_primitives.h>
-#include <allegro5\allegro_font.h>
-#include <allegro5\allegro_ttf.h>
-#include <allegro5\allegro_image.h>
-#include <allegro5\allegro_audio.h>
-#include <allegro5\allegro_acodec.h>
+#include <allegro5/allegro5.h>
+#include <allegro5/allegro_primitives.h>
+#include <allegro5/allegro_font.h>
+#include <allegro5/allegro_ttf.h>
+#include <allegro5/allegro_image.h>
+#include <allegro5/allegro_audio.h>
+#include <allegro5/allegro_acodec.h>
 
 #include <cmath>
 
@@ -30,7 +30,7 @@ typedef struct {
 	//TIMERS
 	ALLEGRO_TIMER * timer;
 	ALLEGRO_TIMER *timeout;
-	//Samples (TODO: posría ponerse en una segunda esctructura)
+	//Samples (TODO: posrï¿½a ponerse en una segunda esctructura)
 	ALLEGRO_SAMPLE *backgroundMusic;
 	ALLEGRO_SAMPLE *clickOnButtonSound;
 	ALLEGRO_SAMPLE *sunBeatsDownSound;

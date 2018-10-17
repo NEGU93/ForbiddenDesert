@@ -1,7 +1,7 @@
 #ifndef NAVIGATORBUTTON_H_INCLUDED
 #define NAVIGATORBUTTON_H_INCLUDED
 
-#include "Button.h"
+#include "Button.hpp"
 
 class NavigatorButton : public Button {
 public:

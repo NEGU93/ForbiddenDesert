@@ -1,7 +1,7 @@
 #ifndef CLIMBERBUTTON_H_INCLUDED
 #define CLIMBERBUTTON_H_INCLUDED
 
-#include "Button.h"
+#include "Button.hpp"
 
 class ClimberButton : public Button {
 public:

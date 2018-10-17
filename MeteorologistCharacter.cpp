@@ -1,4 +1,4 @@
-#include "MeteorologistCharacter.h"
+#include "MeteorologistCharacter.hpp"
 
 MeteorologistCharacter::MeteorologistCharacter(int rowSet, int columnSet, Container info, ALL* allegro) : Character(rowSet, columnSet, info, allegro) {
 	if (adventurerImage = al_load_bitmap_resized("Resources/Players/meteorologistImage.png", allegro)) {
@@ -27,5 +27,5 @@ bool MeteorologistCharacter::peep() {
 	else { return false; }
 }
 
-//	TODO: game se fija si le quedan movimientos y si es así roba menos cartas.
-//  TODO: lo de ordenar las storm cards lo hace game... se fija si apretó el boton de ordenar las cartas y ahí corre su función.
+//	TODO: game se fija si le quedan movimientos y si es asï¿½ roba menos cartas.
+//  TODO: lo de ordenar las storm cards lo hace game... se fija si apretï¿½ el boton de ordenar las cartas y ahï¿½ corre su funciï¿½n.

@@ -1,4 +1,4 @@
-#include "NavigatorButton.h"
+#include "NavigatorButton.hpp"
 
 NavigatorButton::NavigatorButton() {}
 NavigatorButton::NavigatorButton(int x0, int y0, const char *imageName, const char * nonSelectedImageName, ALL* allegro) : Button(x0, y0, imageName, nonSelectedImageName, allegro) {}

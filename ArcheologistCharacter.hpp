@@ -1,7 +1,7 @@
 #ifndef ARCHEOLOGISTCHARACTER_H_
 #define ARCHEOLOGISTCHARACTER_H_
 
-#include "Character.h"
+#include "Character.hpp"
 
 class ArcheologistCharacter : public Character{
 public:

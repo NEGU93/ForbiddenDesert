@@ -23,6 +23,6 @@ typedef struct {
 using namespace std;
 
 typedef unsigned char uchar;
-typedef unsigned long int uint;
+//typedef unsigned long int uint;		// already on /usr/include/x86_64-linux-gnu/sys/types.h
 
 #endif

@@ -1,8 +1,8 @@
 #ifndef CLIMBERCHARACTER_H_
 #define CLIMBERCHARACTER_H_
 
-#include "Character.h"
-#include "Button.h"
+#include "Character.hpp"
+#include "Button.hpp"
 
 class ClimberCharacter : public Character {
 public:
@@ -19,7 +19,7 @@ private:
 	ALLEGRO_BITMAP* climberImage;
 	Button *takeWithMeButton;
 	ALLEGRO_BITMAP* selectedImage;
-	ALLEGRO_BITMAP* unableToTakeCharacterWithMe;	//TODO: Esto aun no funciona... habría que hacer un updateChar que le pase una variable extra y le diga si puede o no (game sabe si hay dos pjs en el mismo lugar)
+	ALLEGRO_BITMAP* unableToTakeCharacterWithMe;	//TODO: Esto aun no funciona... habrï¿½a que hacer un updateChar que le pase una variable extra y le diga si puede o no (game sabe si hay dos pjs en el mismo lugar)
 	bool takeWithMe;
 };
 

@@ -1,7 +1,7 @@
 #ifndef ARCHEOLOGISTBUTTON_H_INCLUDED
 #define ARCHEOLOGISTBUTTON_H_INCLUDED
 
-#include "Button.h"
+#include "Button.hpp"
 
 class ArcheologistButton : public Button {
 public:

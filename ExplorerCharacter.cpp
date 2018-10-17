@@ -1,4 +1,4 @@
-#include "ExplorerCharacter.h"
+#include "ExplorerCharacter.hpp"
 
 ExplorerCharacter::ExplorerCharacter(int rowSet, int columnSet, Container info, ALL *allegro) : Character(rowSet, columnSet, info, allegro){
 	if(adventurerImage = al_load_bitmap_resized("Resources/Players/explorerImage.png", allegro)){
@@ -40,7 +40,7 @@ void ExplorerCharacter::moveDownLeftDiagonally() {
 	}
 }
 void ExplorerCharacter::useDuneBlasterDiagonally(){
-	//TODO: movimiento especial, hay que hacerlo todo, lo declaro ahora como para que esté.
+	//TODO: movimiento especial, hay que hacerlo todo, lo declaro ahora como para que estï¿½.
 }
 ExplorerCharacter::~ExplorerCharacter(){
 	for (int i = 0; i < MAXOFWATERS; i++) { al_destroy_bitmap(watersImage[i]); }

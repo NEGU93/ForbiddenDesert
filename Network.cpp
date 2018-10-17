@@ -1,4 +1,4 @@
-#include "Network.h"
+#include "Network.hpp"
 
 initNetwork::initNetwork() {
 	seedStart();
@@ -6,6 +6,7 @@ initNetwork::initNetwork() {
 	randGenerator();
 	abort = false;
 }
+
 void initNetwork::initializeNet(ALL *allegro) {
 	al_set_target_backbuffer(allegro->startMenuDisplay);
 	getIP(allegro);
@@ -16,18 +17,18 @@ void initNetwork::initializeNet(ALL *allegro) {
 
 	for (; randNum && (!(isConnected(connection))); randNum--) {
 		connection = openConnection(IP, port);
-		Sleep(0.99);
+		usleep(1);		//0.99);
 	}
 	for (int i = 20; isPending(connection) && i; i--) {
-		Sleep(200);
+		usleep(200);
 	}
 	if (!(isConnected(connection))) {
 		printAllegro(allegro, "Trying Connection as Server");
 		startListening(port);
 		while (!(connection = getAvailableConnection()) && al_get_timer_count(allegro->timeout)<TIME_OUT)
-			Sleep(500);
+			usleep(500);
 		while (isPending(connection))
-			Sleep(1);
+			usleep(1);
 		typeconn = SERVER;
 		printAllegro(allegro, "Connection Sucessful!");
 	}

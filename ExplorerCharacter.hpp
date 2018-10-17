@@ -1,7 +1,7 @@
 #ifndef EXPLORERCHARACTER_H_
 #define EXPLORERCHARACTER_H_
 
-#include "Character.h"
+#include "Character.hpp"
 
 class ExplorerCharacter : public Character{
 public:

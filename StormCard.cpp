@@ -1,4 +1,4 @@
-#include "StormCard.h"
+#include "StormCard.hpp"
 #define STORMCARD_X 0.8375
 #define STORMCARD_Y 0.3722
 StormCard::StormCard() {}

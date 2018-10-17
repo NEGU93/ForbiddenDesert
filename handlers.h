@@ -1,8 +1,8 @@
 #ifndef HANDLER_H_INCLUDED
 #define HANDLER_H_INCLUDED
 
-#include "def.h"
-#include "allegro.h"
+#include "def.hpp"
+#include "allegro.hpp"
 #include "worms.h"
 
 void refresh(ALL* allegro, worm * worms[MAX_WORMS]);

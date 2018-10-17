@@ -1,7 +1,7 @@
 #ifndef WATERCARRIERBUTTON_H_INCLUDED
 #define WATERCARRIERBUTTON_H_INCLUDED
 
-#include "Button.h"
+#include "Button.hpp"
 
 class WaterCarrierButton : public Button {
 public:

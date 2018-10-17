@@ -1,9 +1,9 @@
 #ifndef GETNEXTEVENT_H_INCLUDED
 #define GETNEXTEVETN_H_INCLUDED
 
-#include "allegro.h"
+#include "allegro.hpp"
 #include "worms.h"
-#include "def.h"
+#include "def.hpp"
 
 typedef enum{KEY_LEFT,KEY_RIGHT,KEY_UP,KEY_A,KEY_D,KEY_W};
 

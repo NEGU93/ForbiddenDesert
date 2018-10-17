@@ -1,8 +1,8 @@
 #ifndef PART_H_INCLUDED
 #define PART_H_INCLUDED
 
-#include "def.h"
-#include "allegro.h"
+#include "def.hpp"
+#include "allegro.hpp"
 
 class Part {
 public:

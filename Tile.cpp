@@ -1,4 +1,4 @@
-#include "Tile.h"
+#include "Tile.hpp"
 
 Tile::Tile() {}
 Tile::Tile(TilesEnum tileType, ALL* allegro) {

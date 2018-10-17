@@ -1,4 +1,4 @@
-#include "Part.h"
+#include "Part.hpp"
 
 Part::Part() {
 	if (partImage = al_load_bitmap("Resources/Parts/engineImage.png")) {

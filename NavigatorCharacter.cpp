@@ -1,4 +1,4 @@
-#include "NavigatorCharacter.h"
+#include "NavigatorCharacter.hpp"
 
 NavigatorCharacter::NavigatorCharacter(int rowSet, int columnSet, Container info, ALL *allegro) : Character(rowSet, columnSet, info, allegro){
 	if(adventurerImage = al_load_bitmap_resized("Resources/Players/navigatorImage.png", allegro)){

@@ -1,7 +1,7 @@
 #ifndef METEOROLOGISTBUTTON_H_INCLUDED
 #define METEOROLOGISTBUTTON_H_INCLUDED
 
-#include "Button.h"
+#include "Button.hpp"
 
 class MeteorologistButton : public Button {
 public:

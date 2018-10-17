@@ -1,10 +1,10 @@
 #include "fsmInit.h"
 
 FSMI::FSMI(){
-	exit=FALSE;//Para que en principio entre al while
+	exit=false;//Para que en principio entre al while
 	state=IDLE;//Estado inicial
 	turnsort();
-	nameready=FALSE;//Todavia sin nombre
+	nameready=false;//Todavia sin nombre
 }
 void FSMI::turnsort(){
 	turn= rand()%2+CLIENT;// Turno aleatorio.  El define "CLIENT" es el offset del numero que se genera (0/1 + CLIENT)
@@ -31,7 +31,7 @@ void FSMI::start(ALL* allegro){
 			changestate(W4STRING);
 			break;
 		case W4NAME:
-			Sleep(300);
+			usleep(300);
 			data = pck.receivePack();
 			if(data.ID == NAME)
 				changestate(SENDNAME);
@@ -49,14 +49,14 @@ void FSMI::start(ALL* allegro){
 			break;
 		case W4STRING:
 			printAllegro(allegro,"Waiting for your friend's name...");
-			Sleep(300);
+			usleep(300);
 			data = pck.receivePack();
 			Informacion.addFriendName(data.name);
 			if(data.ID == NAME_IS){
 				printAllegro(allegro,"Your friend's name is:  ");
-				Sleep(1000);
+				usleep(1000);
 				printAllegro(allegro,data.name);
-				Sleep(1000);
+				usleep(1000);
 				changestate(SENDACK);
 			}
 			break;
@@ -66,9 +66,9 @@ void FSMI::start(ALL* allegro){
 			switch(prevstate)
 			{
 				case W4STRING:
-					if(nameready == FALSE){
+					if(nameready == false){
 						changestate(W4NAME);
-						nameready = TRUE;
+						nameready = true;
 					}
 					else{
 						if(net.typeconn == CLIENT)
@@ -84,15 +84,15 @@ void FSMI::start(ALL* allegro){
 					break;
 			}
 		case W4ACK:
-			Sleep(300);
+			usleep(300);
 			data = pck.receivePack();
 			if(data.ID == ACK){
 				switch(prevstate)
 				{
 					case SENDNAME:
-						if(nameready == FALSE){
+						if(nameready == false){
 							changestate(ASK4NAME);
-							nameready = TRUE;
+							nameready = true;
 						}
 						else
 							if(net.typeconn == CLIENT)
@@ -137,7 +137,7 @@ void FSMI::start(ALL* allegro){
 			changestate(W4ACK);
 			break;
 		case W4TURN:
-			Sleep(300);
+			usleep(300);
 			data = pck.receivePack();	//Recibo 
 			Informacion.myTurn = data.myTurn;	//Guardoo
 			if (data.ID == I_START)

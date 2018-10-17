@@ -1,4 +1,4 @@
-#include "Packages.h"
+#include "Packages.hpp"
 #include <iostream>
 
 //Constructor
@@ -39,7 +39,7 @@ Container::Container(){//Constructor, inicializo Slots, ID, arreglo de tiles y n
 }	
 Container Pack::receivePack(){
 	Container ret;
-	char ID;
+	unsigned char ID;
 	receiveData(connection, recbuffer, sizeof(recbuffer));
 	ID = recbuffer[0];
 	switch(ID)

@@ -3,11 +3,11 @@
 
 #include <iostream>
 #include "polonet.h"
-#include <windows.h>
+//#include <windows.h>
 #include <algorithm>
-#include "Tile.h"
-#include "StormCard.h"
-#include "ChoosePlayer.h"
+#include "Tile.hpp"
+#include "StormCard.hpp"
+#include "ChoosePlayer.hpp"
 
 #define BUFFERSIZE 255
 #define CANTOFTILES 25
@@ -112,7 +112,7 @@ public:
 	void addName(char* name);
 	void addFriendName(char* name);
 	void addInfo(Container info);
-	char ID;	//ID de cada uno
+	unsigned char ID;	//ID de cada uno
 	char Slot1;
 	char Slot2;
 	char Slot3;
@@ -131,6 +131,4 @@ public:
 	char myTurn;
 };
 
-
-
-#endif PACKAGE_H_
+#endif // PACKAGE_H_

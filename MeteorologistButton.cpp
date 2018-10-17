@@ -1,4 +1,4 @@
-#include "MeteorologistButton.h"
+#include "MeteorologistButton.hpp"
 
 MeteorologistButton::MeteorologistButton() {
 

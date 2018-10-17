@@ -1,4 +1,4 @@
-#include "WaterCarrierCharacter.h"
+#include "WaterCarrierCharacter.hpp"
 
 WaterCarrierCharacter::WaterCarrierCharacter(int rowSet, int columnSet, Container info, ALL *allegro) : Character(rowSet, columnSet, info, allegro) {
 	if(adventurerImage = al_load_bitmap_resized("Resources/Players/waterCarrierImage.png", allegro)){

@@ -3,9 +3,9 @@
 
 #include <iostream>
 #include "polonet.h"
-#include "allegro.h"
-#include "def.h"
-#include <Windows.h>
+#include "allegro.hpp"
+#include "def.hpp"
+//#include <Windows.h>
 #include <ctime>
 
 using namespace std;

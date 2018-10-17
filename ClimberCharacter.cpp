@@ -1,4 +1,4 @@
-#include "ClimberCharacter.h"
+#include "ClimberCharacter.hpp"
 
 ClimberCharacter::ClimberCharacter(int rowSet, int columnSet, Container info, ALL* allegro) : Character(rowSet, columnSet, info, allegro) {
 	if(adventurerImage = al_load_bitmap_resized("Resources/Players/climberImage.png", allegro)){

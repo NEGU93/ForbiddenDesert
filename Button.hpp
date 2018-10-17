@@ -1,8 +1,8 @@
 #ifndef BUTTON_H_INCLUDED
 #define BUTTON_H_INCLUDED	//Se incluyen definiciones y estructuras que usan todos los .cpp
 
-#include "def.h"
-#include "allegro.h"
+#include "def.hpp"
+#include "allegro.hpp"
 
 enum buttonEnum{REMOVEBUTTON, EXCAVATEBUTTON, PICKUPBUTTON, OFFERWBUTTON, OFFEREBUTTON, REQUESTWBUTTON,REQUESTEBUTTON};
 

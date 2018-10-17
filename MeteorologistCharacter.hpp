@@ -1,8 +1,8 @@
 #ifndef METEOROLOGIST_H_INCLUDED
 #define METEOROLOGIST_H_INCLUDED
 
-#include "Character.h"
-#include "Button.h"
+#include "Character.hpp"
+#include "Button.hpp"
 
 class MeteorologistCharacter : public Character {
 public:

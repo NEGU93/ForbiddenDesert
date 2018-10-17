@@ -1,28 +1,28 @@
 #pragma warning(disable: 4996)
-#include "def.h"
-#include "allegro.h"
+#include "def.hpp"
+#include "allegro.hpp"
 
-#include "ChoosePlayer.h"
-#include "Game.h"
+#include "ChoosePlayer.hpp"
+#include "Game.hpp"
 
 /* ------------------- TODO -----------------------
-5. Para poder declarar variables armé constructores por defecto vacios... estaría bueno borrarlos y ponerle argumentos por defecto (diapositiva 10-Administración de memoria, pagina 8)
+5. Para poder declarar variables armï¿½ constructores por defecto vacios... estarï¿½a bueno borrarlos y ponerle argumentos por defecto (diapositiva 10-Administraciï¿½n de memoria, pagina 8)
 */
 
 /*BUG REPORT
 1.Al utilizar los vinoculares, se da vuelta la carta a espiar en la pantalla del jugador que lo utiliza, pero no se muestra al segundo jugador.
-Luego de espiar esa carta, para volver a colocarla boca abajo, se pone boca abajo la última carta dada vuelta, pero para AMBOS jugadores.
-Dado que esa carta nunca se muestra para el segundo jugador, a este se le da vuelta la última carta explorada, generando una desinconización
+Luego de espiar esa carta, para volver a colocarla boca abajo, se pone boca abajo la ï¿½ltima carta dada vuelta, pero para AMBOS jugadores.
+Dado que esa carta nunca se muestra para el segundo jugador, a este se le da vuelta la ï¿½ltima carta explorada, generando una desinconizaciï¿½n
 entre las cartas de los jugadores. Esto se soluciona haciedno que la carta espiada con vinoculares se muestre a ambos jugadores, o cuidandose de 
-no voltear la última carta jugada en el jugador quyo turno no está en proceso.
+no voltear la ï¿½ltima carta jugada en el jugador quyo turno no estï¿½ en proceso.
 
-2.Tuve un problema con offer water, pero es porque no se hacer bien la lógica de la condición de que se puede hacer adyacente.
+2.Tuve un problema con offer water, pero es porque no se hacer bien la lï¿½gica de la condiciï¿½n de que se puede hacer adyacente.
 
 3.Al utilizar el tunel, el programa no se fija si los turnos llegaron a cero, permitiendo el jugador tener un numero negativo de turnos restantes
 viajando de un lado hacia el otro del tunel repetidas veces. (Creo que arreglado, hice que se fijara si puede hacer setPos utilizando decreseMoves que devuelva bool)
 */
 
-void main(void) {
+int main(void) {
 	//Allegro initialization
 	ALL allegroData = { NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL };
 	ALL* allegro = &allegroData;
@@ -58,4 +58,6 @@ void main(void) {
 	delete gameNetwork;
 	delete game;
 	destroyAll(allegro);
+
+	return 0;
 }

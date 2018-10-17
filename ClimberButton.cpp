@@ -1,4 +1,4 @@
-#include "ClimberButton.h"
+#include "ClimberButton.hpp"
 
 ClimberButton::ClimberButton() {}
 ClimberButton::ClimberButton(int x0, int y0, const char *imageName, const char * nonSelectedImageName, ALL* allegro) : Button(x0, y0, imageName, nonSelectedImageName, allegro) {}

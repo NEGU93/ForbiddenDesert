@@ -1,4 +1,4 @@
-#include "StartMenu.h"
+#include "StartMenu.hpp"
 
 StartMenu::StartMenu(ALL* allegro, FSMI *gameConnection)	
 {

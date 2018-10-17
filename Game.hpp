@@ -2,23 +2,23 @@
 #ifndef GAME_H_INCLUDED
 #define GAME_H_INCLUDED
 
-#include "def.h"
-#include "allegro.h"
-#include "Button.h"
-#include "Tile.h"
-#include "Character.h"
+#include "def.hpp"
+#include "allegro.hpp"
+#include "Button.hpp"
+#include "Tile.hpp"
+#include "Character.hpp"
 /* ESTO NO ME GUSTA */
-#include "MeteorologistCharacter.h"
-#include "ClimberCharacter.h"
-#include "ArcheologistCharacter.h"
-#include "ExplorerCharacter.h"
-#include "WaterCarrierCharacter.h"
-#include "NavigatorCharacter.h"
+#include "MeteorologistCharacter.hpp"
+#include "ClimberCharacter.hpp"
+#include "ArcheologistCharacter.hpp"
+#include "ExplorerCharacter.hpp"
+#include "WaterCarrierCharacter.hpp"
+#include "NavigatorCharacter.hpp"
 
-#include "StartMenu.h"
+#include "StartMenu.hpp"
 #include "fsmInit.h"
-#include "Part.h"
-#include "StormCard.h"
+#include "Part.hpp"
+#include "StormCard.hpp"
 #include <algorithm>		//Used to shuffle the array of tiles
 #include <array>
 
@@ -86,7 +86,7 @@ private:
 	void initializeButtons(ALL* allegro);
 	void initializeWaterButtons(ALL* allegro);
 	void initializePeepButtons(ALL* allegro);
-	void Game::initializeEquipmentCardButton(ALL* allegro);
+	void initializeEquipmentCardButton(ALL* allegro);
 	//Keys Pressed
 	void keyUp(ALL *allegro);
 	void keyDown(ALL *allegro);
