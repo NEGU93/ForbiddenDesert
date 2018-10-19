@@ -17,18 +17,35 @@ void initNetwork::initializeNet(ALL *allegro) {
 
 	for (; randNum && (!(isConnected(connection))); randNum--) {
 		connection = openConnection(IP, port);
-		usleep(1);		//0.99);
+#ifdef __linux__
+        usleep(1000);
+#elif _WIN32
+        Sleep(1);
+#endif
 	}
 	for (int i = 20; isPending(connection) && i; i--) {
-		usleep(200);
+#ifdef __linux__
+        usleep(200000);
+#elif _WIN32
+        Sleep(200);
+#endif
 	}
 	if (!(isConnected(connection))) {
 		printAllegro(allegro, "Trying Connection as Server");
 		startListening(port);
 		while (!(connection = getAvailableConnection()) && al_get_timer_count(allegro->timeout)<TIME_OUT)
-			usleep(500);
-		while (isPending(connection))
-			usleep(1);
+#ifdef __linux__
+            usleep(500000);
+#elif _WIN32
+        Sleep(500);
+#endif
+		while (isPending(connection)) {
+#ifdef __linux__
+            usleep(1000);
+#elif _WIN32
+            Sleep(1);
+#endif
+        }
 		typeconn = SERVER;
 		printAllegro(allegro, "Connection Sucessful!");
 	}

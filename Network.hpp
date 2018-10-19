@@ -5,7 +5,9 @@
 #include "polonet.h"
 #include "allegro.hpp"
 #include "def.hpp"
-//#include <Windows.h>
+#ifdef _WIN32
+#include <Windows.h>
+#endif
 #include <ctime>
 
 using namespace std;

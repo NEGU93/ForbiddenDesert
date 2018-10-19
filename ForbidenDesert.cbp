@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="ForbidenDesert"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\cmake\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/ubuntu/Documents/GitHub/ForbiddenDesert"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/ubuntu/Documents/GitHub/ForbiddenDesert/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/ubuntu/Documents/GitHub/ForbiddenDesert/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/ubuntu/Documents/GitHub/ForbiddenDesert/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/ubuntu/Documents/GitHub/ForbiddenDesert/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/ubuntu/Documents/GitHub/ForbiddenDesert"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/ubuntu/Documents/GitHub/ForbiddenDesert/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/ubuntu/Documents/GitHub/ForbiddenDesert/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/ubuntu/Documents/GitHub/ForbiddenDesert/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/ubuntu/Documents/GitHub/ForbiddenDesert/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/ubuntu/Documents/GitHub/ForbiddenDesert"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/ubuntu/Documents/GitHub/ForbiddenDesert/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/ubuntu/Documents/GitHub/ForbiddenDesert/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/ubuntu/Documents/GitHub/ForbiddenDesert/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/ubuntu/Documents/GitHub/ForbiddenDesert/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="ForbidenDesert">
+				<Option output="/home/ubuntu/Documents/GitHub/ForbiddenDesert/ForbidenDesert" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/ubuntu/Documents/GitHub/ForbiddenDesert"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/ubuntu/Documents/GitHub/ForbiddenDesert"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/ubuntu/Documents/GitHub/ForbiddenDesert/Makefile&quot;  VERBOSE=1 ForbidenDesert"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/ubuntu/Documents/GitHub/ForbiddenDesert/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/ubuntu/Documents/GitHub/ForbiddenDesert/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/ubuntu/Documents/GitHub/ForbiddenDesert/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="ForbidenDesert/fast">
+				<Option output="/home/ubuntu/Documents/GitHub/ForbiddenDesert/ForbidenDesert" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/ubuntu/Documents/GitHub/ForbiddenDesert"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/ubuntu/Documents/GitHub/ForbiddenDesert"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/ubuntu/Documents/GitHub/ForbiddenDesert/Makefile&quot;  VERBOSE=1 ForbidenDesert/fast"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/ubuntu/Documents/GitHub/ForbiddenDesert/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/ubuntu/Documents/GitHub/ForbiddenDesert/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/ubuntu/Documents/GitHub/ForbiddenDesert/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/ArcheologistButton.cpp">
+			<Option target="ForbidenDesert"/>
+		</Unit>
+		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/ArcheologistButton.hpp">
+			<Option target="ForbidenDesert"/>
+		</Unit>
+		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/ArcheologistCharacter.cpp">
+			<Option target="ForbidenDesert"/>
+		</Unit>
+		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/ArcheologistCharacter.hpp">
+			<Option target="ForbidenDesert"/>
+		</Unit>
+		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/Button.cpp">
+			<Option target="ForbidenDesert"/>
+		</Unit>
+		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/Button.hpp">
+			<Option target="ForbidenDesert"/>
+		</Unit>
+		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/Character.cpp">
+			<Option target="ForbidenDesert"/>
+		</Unit>
+		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/Character.hpp">
+			<Option target="ForbidenDesert"/>
+		</Unit>
+		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/ChoosePlayer.cpp">
+			<Option target="ForbidenDesert"/>
+		</Unit>
+		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/ChoosePlayer.hpp">
+			<Option target="ForbidenDesert"/>
+		</Unit>
+		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/ClimberButton.cpp">
+			<Option target="ForbidenDesert"/>
+		</Unit>
+		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/ClimberButton.hpp">
+			<Option target="ForbidenDesert"/>
+		</Unit>
+		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/ClimberCharacter.cpp">
+			<Option target="ForbidenDesert"/>
+		</Unit>
+		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/ClimberCharacter.hpp">
+			<Option target="ForbidenDesert"/>
+		</Unit>
+		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/ExplorerButton.cpp">
+			<Option target="ForbidenDesert"/>
+		</Unit>
+		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/ExplorerButton.hpp">
+			<Option target="ForbidenDesert"/>
+		</Unit>
+		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/ExplorerCharacter.cpp">
+			<Option target="ForbidenDesert"/>
+		</Unit>
+		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/ExplorerCharacter.hpp">
+			<Option target="ForbidenDesert"/>
+		</Unit>
+		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/Game.cpp">
+			<Option target="ForbidenDesert"/>
+		</Unit>
+		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/Game.hpp">
+			<Option target="ForbidenDesert"/>
+		</Unit>
+		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/MeteorologistButton.cpp">
+			<Option target="ForbidenDesert"/>
+		</Unit>
+		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/MeteorologistButton.hpp">
+			<Option target="ForbidenDesert"/>
+		</Unit>
+		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/MeteorologistCharacter.cpp">
+			<Option target="ForbidenDesert"/>
+		</Unit>
+		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/MeteorologistCharacter.hpp">
+			<Option target="ForbidenDesert"/>
+		</Unit>
+		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/NavigatorButton.cpp">
+			<Option target="ForbidenDesert"/>
+		</Unit>
+		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/NavigatorButton.hpp">
+			<Option target="ForbidenDesert"/>
+		</Unit>
+		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/NavigatorCharacter.cpp">
+			<Option target="ForbidenDesert"/>
+		</Unit>
+		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/NavigatorCharacter.hpp">
+			<Option target="ForbidenDesert"/>
+		</Unit>
+		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/Network.cpp">
+			<Option target="ForbidenDesert"/>
+		</Unit>
+		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/Network.hpp">
+			<Option target="ForbidenDesert"/>
+		</Unit>
+		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/Packages.cpp">
+			<Option target="ForbidenDesert"/>
+		</Unit>
+		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/Packages.hpp">
+			<Option target="ForbidenDesert"/>
+		</Unit>
+		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/Part.cpp">
+			<Option target="ForbidenDesert"/>
+		</Unit>
+		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/Part.hpp">
+			<Option target="ForbidenDesert"/>
+		</Unit>
+		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/StartMenu.cpp">
+			<Option target="ForbidenDesert"/>
+		</Unit>
+		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/StartMenu.hpp">
+			<Option target="ForbidenDesert"/>
+		</Unit>
+		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/StormCard.cpp">
+			<Option target="ForbidenDesert"/>
+		</Unit>
+		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/StormCard.hpp">
+			<Option target="ForbidenDesert"/>
+		</Unit>
+		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/Tile.cpp">
+			<Option target="ForbidenDesert"/>
+		</Unit>
+		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/Tile.hpp">
+			<Option target="ForbidenDesert"/>
+		</Unit>
+		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/WaitForEvent.cpp">
+			<Option target="ForbidenDesert"/>
+		</Unit>
+		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/WaterCarrierButton.cpp">
+			<Option target="ForbidenDesert"/>
+		</Unit>
+		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/WaterCarrierButton.hpp">
+			<Option target="ForbidenDesert"/>
+		</Unit>
+		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/WaterCarrierCharacter.cpp">
+			<Option target="ForbidenDesert"/>
+		</Unit>
+		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/WaterCarrierCharacter.hpp">
+			<Option target="ForbidenDesert"/>
+		</Unit>
+		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/allegro.cpp">
+			<Option target="ForbidenDesert"/>
+		</Unit>
+		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/allegro.hpp">
+			<Option target="ForbidenDesert"/>
+		</Unit>
+		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/fsmInit.cpp">
+			<Option target="ForbidenDesert"/>
+		</Unit>
+		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/fsmInit.h">
+			<Option target="ForbidenDesert"/>
+		</Unit>
+		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/main.cpp">
+			<Option target="ForbidenDesert"/>
+		</Unit>
+		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/polo.c">
+			<Option target="ForbidenDesert"/>
+		</Unit>
+		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/polo.h">
+			<Option target="ForbidenDesert"/>
+		</Unit>
+		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/polonet.c">
+			<Option target="ForbidenDesert"/>
+		</Unit>
+		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/polonet.h">
+			<Option target="ForbidenDesert"/>
+		</Unit>
+		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/cmake/FindAllegro5.cmake">
+			<Option virtualFolder="CMake Files\cmake\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

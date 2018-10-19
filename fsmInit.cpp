@@ -31,7 +31,11 @@ void FSMI::start(ALL* allegro){
 			changestate(W4STRING);
 			break;
 		case W4NAME:
-			usleep(300);
+#ifdef __linux__
+				usleep(300000);
+#elif _WIN32
+				Sleep(300);
+#endif
 			data = pck.receivePack();
 			if(data.ID == NAME)
 				changestate(SENDNAME);
@@ -49,14 +53,26 @@ void FSMI::start(ALL* allegro){
 			break;
 		case W4STRING:
 			printAllegro(allegro,"Waiting for your friend's name...");
-			usleep(300);
+#ifdef __linux__
+				usleep(300000);
+#elif _WIN32
+				Sleep(300);
+#endif
 			data = pck.receivePack();
 			Informacion.addFriendName(data.name);
 			if(data.ID == NAME_IS){
 				printAllegro(allegro,"Your friend's name is:  ");
-				usleep(1000);
+#ifdef __linux__
+				usleep(1000000);
+#elif _WIN32
+				Sleep(1000);
+#endif
 				printAllegro(allegro,data.name);
-				usleep(1000);
+#ifdef __linux__
+				usleep(1000000);
+#elif _WIN32
+				Sleep(1000);
+#endif
 				changestate(SENDACK);
 			}
 			break;
@@ -84,7 +100,11 @@ void FSMI::start(ALL* allegro){
 					break;
 			}
 		case W4ACK:
-			usleep(300);
+#ifdef __linux__
+				usleep(300000);
+#elif _WIN32
+				Sleep(300);
+#endif
 			data = pck.receivePack();
 			if(data.ID == ACK){
 				switch(prevstate)
@@ -137,7 +157,11 @@ void FSMI::start(ALL* allegro){
 			changestate(W4ACK);
 			break;
 		case W4TURN:
-			usleep(300);
+#ifdef __linux__
+				usleep(300000);
+#elif _WIN32
+				Sleep(300);
+#endif
 			data = pck.receivePack();	//Recibo 
 			Informacion.myTurn = data.myTurn;	//Guardoo
 			if (data.ID == I_START)

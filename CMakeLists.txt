@@ -2,14 +2,12 @@
 cmake_minimum_required(VERSION 2.6)
 
 # Project name
-project(game)
+project(ForbidenDesert)
 
 set(CMAKE_CXX_STANDARD 11)  # enable C++11 standard
-# set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -lGLU -lGL -lglut")
 
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR})
 set(LIBRARY_OUTPUT_PATH ${CMAKE_BINARY_DIR})
-
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/")
 # Finds Allegro using pkgconfig, so it must be configured correctly
@@ -29,6 +27,6 @@ file(GLOB all_SRCS
 		"*.c"
         )
 
-add_executable(game ${all_SRCS})
+add_executable(ForbidenDesert ${all_SRCS})
 target_link_libraries(${PROJECT_NAME} ${ALLEGRO_LIBRARIES} ${OPENGL_LIBRARIES} ${GLUT_LIBRARY})
 
