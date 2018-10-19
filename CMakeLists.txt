@@ -18,13 +18,18 @@ include_directories("${PROJECT_SOURCE_DIR}")
 
 find_package(OpenGL REQUIRED)
 find_package(GLUT REQUIRED)
+include_directories(
+		${PROJECT_SOURCE_DIR}/include
+		${PROJECT_SOURCE_DIR}/src
+)
 include_directories( ${OPENGL_INCLUDE_DIRS}  ${GLUT_INCLUDE_DIRS} )
 
 
 file(GLOB all_SRCS
-        "*.h"
-        "*.cpp"
-		"*.c"
+        "${PROJECT_SOURCE_DIR}/include/*.h"
+		"${PROJECT_SOURCE_DIR}/include/.hpp"
+        "${PROJECT_SOURCE_DIR}/src/*.cpp"
+		"${PROJECT_SOURCE_DIR}/src/*.c"
         )
 
 add_executable(ForbidenDesert ${all_SRCS})

@@ -45,6 +45,8 @@
 				<Option compiler="gcc"/>
 				<Compiler>
 					<Add directory="/home/ubuntu/Documents/GitHub/ForbiddenDesert"/>
+					<Add directory="/home/ubuntu/Documents/GitHub/ForbiddenDesert/include"/>
+					<Add directory="/home/ubuntu/Documents/GitHub/ForbiddenDesert/src"/>
 				</Compiler>
 				<MakeCommands>
 					<Build command="/usr/bin/make -f &quot;/home/ubuntu/Documents/GitHub/ForbiddenDesert/Makefile&quot;  VERBOSE=1 ForbidenDesert"/>
@@ -61,6 +63,8 @@
 				<Option compiler="gcc"/>
 				<Compiler>
 					<Add directory="/home/ubuntu/Documents/GitHub/ForbiddenDesert"/>
+					<Add directory="/home/ubuntu/Documents/GitHub/ForbiddenDesert/include"/>
+					<Add directory="/home/ubuntu/Documents/GitHub/ForbiddenDesert/src"/>
 				</Compiler>
 				<MakeCommands>
 					<Build command="/usr/bin/make -f &quot;/home/ubuntu/Documents/GitHub/ForbiddenDesert/Makefile&quot;  VERBOSE=1 ForbidenDesert/fast"/>
@@ -70,166 +74,97 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/ArcheologistButton.cpp">
+		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/include/fsmInit.h">
 			<Option target="ForbidenDesert"/>
 		</Unit>
-		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/ArcheologistButton.hpp">
+		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/include/polo.h">
 			<Option target="ForbidenDesert"/>
 		</Unit>
-		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/ArcheologistCharacter.cpp">
+		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/include/polonet.h">
 			<Option target="ForbidenDesert"/>
 		</Unit>
-		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/ArcheologistCharacter.hpp">
+		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/src/ArcheologistButton.cpp">
 			<Option target="ForbidenDesert"/>
 		</Unit>
-		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/Button.cpp">
+		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/src/ArcheologistCharacter.cpp">
 			<Option target="ForbidenDesert"/>
 		</Unit>
-		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/Button.hpp">
+		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/src/Button.cpp">
 			<Option target="ForbidenDesert"/>
 		</Unit>
-		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/Character.cpp">
+		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/src/Character.cpp">
 			<Option target="ForbidenDesert"/>
 		</Unit>
-		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/Character.hpp">
+		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/src/ChoosePlayer.cpp">
 			<Option target="ForbidenDesert"/>
 		</Unit>
-		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/ChoosePlayer.cpp">
+		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/src/ClimberButton.cpp">
 			<Option target="ForbidenDesert"/>
 		</Unit>
-		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/ChoosePlayer.hpp">
+		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/src/ClimberCharacter.cpp">
 			<Option target="ForbidenDesert"/>
 		</Unit>
-		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/ClimberButton.cpp">
+		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/src/ExplorerButton.cpp">
 			<Option target="ForbidenDesert"/>
 		</Unit>
-		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/ClimberButton.hpp">
+		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/src/ExplorerCharacter.cpp">
 			<Option target="ForbidenDesert"/>
 		</Unit>
-		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/ClimberCharacter.cpp">
+		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/src/Game.cpp">
 			<Option target="ForbidenDesert"/>
 		</Unit>
-		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/ClimberCharacter.hpp">
+		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/src/MeteorologistButton.cpp">
 			<Option target="ForbidenDesert"/>
 		</Unit>
-		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/ExplorerButton.cpp">
+		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/src/MeteorologistCharacter.cpp">
 			<Option target="ForbidenDesert"/>
 		</Unit>
-		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/ExplorerButton.hpp">
+		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/src/NavigatorButton.cpp">
 			<Option target="ForbidenDesert"/>
 		</Unit>
-		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/ExplorerCharacter.cpp">
+		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/src/NavigatorCharacter.cpp">
 			<Option target="ForbidenDesert"/>
 		</Unit>
-		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/ExplorerCharacter.hpp">
+		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/src/Network.cpp">
 			<Option target="ForbidenDesert"/>
 		</Unit>
-		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/Game.cpp">
+		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/src/Packages.cpp">
 			<Option target="ForbidenDesert"/>
 		</Unit>
-		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/Game.hpp">
+		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/src/Part.cpp">
 			<Option target="ForbidenDesert"/>
 		</Unit>
-		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/MeteorologistButton.cpp">
+		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/src/StartMenu.cpp">
 			<Option target="ForbidenDesert"/>
 		</Unit>
-		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/MeteorologistButton.hpp">
+		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/src/StormCard.cpp">
 			<Option target="ForbidenDesert"/>
 		</Unit>
-		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/MeteorologistCharacter.cpp">
+		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/src/Tile.cpp">
 			<Option target="ForbidenDesert"/>
 		</Unit>
-		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/MeteorologistCharacter.hpp">
+		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/src/WaitForEvent.cpp">
 			<Option target="ForbidenDesert"/>
 		</Unit>
-		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/NavigatorButton.cpp">
+		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/src/WaterCarrierButton.cpp">
 			<Option target="ForbidenDesert"/>
 		</Unit>
-		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/NavigatorButton.hpp">
+		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/src/WaterCarrierCharacter.cpp">
 			<Option target="ForbidenDesert"/>
 		</Unit>
-		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/NavigatorCharacter.cpp">
+		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/src/allegro.cpp">
 			<Option target="ForbidenDesert"/>
 		</Unit>
-		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/NavigatorCharacter.hpp">
+		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/src/fsmInit.cpp">
 			<Option target="ForbidenDesert"/>
 		</Unit>
-		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/Network.cpp">
+		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/src/main.cpp">
 			<Option target="ForbidenDesert"/>
 		</Unit>
-		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/Network.hpp">
+		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/src/polo.c">
 			<Option target="ForbidenDesert"/>
 		</Unit>
-		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/Packages.cpp">
-			<Option target="ForbidenDesert"/>
-		</Unit>
-		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/Packages.hpp">
-			<Option target="ForbidenDesert"/>
-		</Unit>
-		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/Part.cpp">
-			<Option target="ForbidenDesert"/>
-		</Unit>
-		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/Part.hpp">
-			<Option target="ForbidenDesert"/>
-		</Unit>
-		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/StartMenu.cpp">
-			<Option target="ForbidenDesert"/>
-		</Unit>
-		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/StartMenu.hpp">
-			<Option target="ForbidenDesert"/>
-		</Unit>
-		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/StormCard.cpp">
-			<Option target="ForbidenDesert"/>
-		</Unit>
-		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/StormCard.hpp">
-			<Option target="ForbidenDesert"/>
-		</Unit>
-		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/Tile.cpp">
-			<Option target="ForbidenDesert"/>
-		</Unit>
-		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/Tile.hpp">
-			<Option target="ForbidenDesert"/>
-		</Unit>
-		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/WaitForEvent.cpp">
-			<Option target="ForbidenDesert"/>
-		</Unit>
-		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/WaterCarrierButton.cpp">
-			<Option target="ForbidenDesert"/>
-		</Unit>
-		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/WaterCarrierButton.hpp">
-			<Option target="ForbidenDesert"/>
-		</Unit>
-		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/WaterCarrierCharacter.cpp">
-			<Option target="ForbidenDesert"/>
-		</Unit>
-		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/WaterCarrierCharacter.hpp">
-			<Option target="ForbidenDesert"/>
-		</Unit>
-		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/allegro.cpp">
-			<Option target="ForbidenDesert"/>
-		</Unit>
-		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/allegro.hpp">
-			<Option target="ForbidenDesert"/>
-		</Unit>
-		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/fsmInit.cpp">
-			<Option target="ForbidenDesert"/>
-		</Unit>
-		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/fsmInit.h">
-			<Option target="ForbidenDesert"/>
-		</Unit>
-		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/main.cpp">
-			<Option target="ForbidenDesert"/>
-		</Unit>
-		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/polo.c">
-			<Option target="ForbidenDesert"/>
-		</Unit>
-		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/polo.h">
-			<Option target="ForbidenDesert"/>
-		</Unit>
-		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/polonet.c">
-			<Option target="ForbidenDesert"/>
-		</Unit>
-		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/polonet.h">
+		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/src/polonet.c">
 			<Option target="ForbidenDesert"/>
 		</Unit>
 		<Unit filename="/home/ubuntu/Documents/GitHub/ForbiddenDesert/CMakeLists.txt">
