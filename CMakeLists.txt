@@ -2,7 +2,7 @@
 cmake_minimum_required(VERSION 2.6)
 
 # Project name
-project(ForbidenDesert)
+project(ForbiddenDesert)
 
 set(CMAKE_CXX_STANDARD 11)  # enable C++11 standard
 
@@ -32,6 +32,6 @@ file(GLOB all_SRCS
 		"${PROJECT_SOURCE_DIR}/src/*.c"
         )
 
-add_executable(ForbidenDesert ${all_SRCS})
+add_executable(ForbiddenDesert ${all_SRCS})
 target_link_libraries(${PROJECT_NAME} ${ALLEGRO_LIBRARIES} ${OPENGL_LIBRARIES} ${GLUT_LIBRARY})
 
