@@ -7,11 +7,31 @@
 
 class StartMenu {
 public:
-	StartMenu(ALL *allegro, FSMI *gameConnection);
+	StartMenu(ALL *allegro);
 	//~StartMenu();
 
+	bool eventHandler(ALL *allegro);
+
+    bool get_player_mode() { return singlePlayer; }
+
 private:
+	//! Variables
+	pos mouse;
+	bool redraw;
+	bool singlePlayer;
+
 	ALLEGRO_BITMAP	*background;
+	// Buttons
+	Button *singlePlayerButton;
+	Button *multiPlayerButton;
+
+	//! Methods
+	void checkMouse(ALL* allegro);
+	bool click(ALL* allegro);
+	void initializeButtons(ALL* allegro);
+
+	void updateScreen(ALL* allegro);
+
 
 };
 

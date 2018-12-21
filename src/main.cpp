@@ -22,27 +22,51 @@ no voltear la �ltima carta jugada en el jugador quyo turno no est� en proces
 viajando de un lado hacia el otro del tunel repetidas veces. (Creo que arreglado, hice que se fijara si puede hacer setPos utilizando decreseMoves que devuelva bool)
 */
 
-int main(void) {
-	//Allegro initialization
-	ALL allegroData = { NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL };
-	ALL* allegro = &allegroData;
-	if (!init_allegro(allegro)) {
-		cout << "Failed to initialize allegro. Closing Forbidden Desert." << endl;
-	}
-	bool stillPlaying = true;
-	FSMI *gameNetwork = NULL;
-	//Connection
-	do {
-		if (gameNetwork != NULL)
-			delete gameNetwork;
-		gameNetwork = new FSMI;
-		gameNetwork->start(allegro);
-		al_destroy_display(allegro->startMenuDisplay);
-	} while (gameNetwork->net.abort);
+int main() {
+    //Allegro initialization
+    ALL allegroData = {NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL};
+    ALL *allegro = &allegroData;
+    if (!init_allegro(allegro)) {
+        cout << "Failed to initialize allegro. Closing Forbidden Desert." << endl;
+    }
+    FSMI *gameNetwork = nullptr;
+    bool stillPlaying;
+    bool chooseMode = true;
+    bool singlePlayer;
+
+    auto *startMenu = new StartMenu(allegro);
+    while (chooseMode) {
+        chooseMode = startMenu->eventHandler(allegro);
+    }
+    singlePlayer = startMenu->get_player_mode();
+
+    if (singlePlayer) {
+        cout << "Single Player Mode" << endl;
+        char *rol1;
+        char *rol2;
+        stillPlaying = true;
+        ChoosePlayer *choosePlayer;
+        choosePlayer = new ChoosePlayer(allegro, rol1, rol2);
+        while (stillPlaying) {
+            stillPlaying = choosePlayer->eventHandler(allegro);
+        }
+        cout << "Roles chosen: " << rol1 << rol2 << endl;
+    }
+    else {
+        cout << "Multi Player Mode" << endl;
+        do { //Connection
+            if (gameNetwork != NULL)
+                delete gameNetwork;
+            gameNetwork = new FSMI;
+            gameNetwork->start(allegro);
+            al_destroy_display(allegro->startMenuDisplay);
+        } while (gameNetwork->net.abort);
+    }
 	//Game
-	Game *game = NULL;
+	return 0;
+	Game *game = nullptr;
 	do {
-		if (game != NULL) {
+		if (game != nullptr) {
 			delete game;
 			gameNetwork->restart(allegro);
 		}
@@ -55,7 +79,9 @@ int main(void) {
 		al_destroy_display(allegro->display);
 	} while (game->getPlayAgain() && !game->getGameOver());
 
-	delete gameNetwork;
+	if(!singlePlayer) {
+        delete gameNetwork;
+    }
 	delete game;
 	destroyAll(allegro);
 

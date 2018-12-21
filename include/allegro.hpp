@@ -12,8 +12,8 @@
 
 #include <cmath>
 
-#define SCREEN_X 1440	
-#define SCREEN_Y 900
+#define SCREEN_X 1024
+#define SCREEN_Y 768
 
 #define MAXRESOLUTION_X 1920
 #define MAXRESOLUTION_Y 1080
@@ -30,7 +30,7 @@ typedef struct {
 	//TIMERS
 	ALLEGRO_TIMER * timer;
 	ALLEGRO_TIMER *timeout;
-	//Samples (TODO: posr�a ponerse en una segunda esctructura)
+	//Samples (TODO: posria ponerse en una segunda esctructura)
 	ALLEGRO_SAMPLE *backgroundMusic;
 	ALLEGRO_SAMPLE *clickOnButtonSound;
 	ALLEGRO_SAMPLE *sunBeatsDownSound;
@@ -70,6 +70,7 @@ void destroyAll(ALL *allegro);
 char *getcharAllegro(ALL *allegro, int x, int y);
 void printAllegro(ALL* allegro, char *msg);
 void drawStartMenu(ALL *allegro);
+void drawChooseModeStartMenu(ALL *allegro);
 ALLEGRO_BITMAP *al_load_bitmap_resized(const char *filename, ALL* allegro); //TODO: que pase solo los ints que necesito y no toda la struct
 
 #endif

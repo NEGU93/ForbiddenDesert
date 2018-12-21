@@ -370,8 +370,7 @@ void destroyAll(ALL *allegro) {
 
 }
 
-char* getcharAllegro(ALL* allegro, int x, int y)
-{
+char* getcharAllegro(ALL* allegro, int x, int y) {
 	ALLEGRO_USTR* str = al_ustr_new("");            //creo ustring para escribir en allegro
 	int pos = (int)al_ustr_size(str);
 	char* mystring;
@@ -409,6 +408,7 @@ char* getcharAllegro(ALL* allegro, int x, int y)
 
 	return mystring;
 }
+
 void printAllegro(ALL *allegro, char *msg) {
 	al_set_target_backbuffer(allegro->startMenuDisplay);
 	al_draw_filled_rectangle(0, HEIGHT * allegro->screenHeight / MAXRESOLUTION_Y - 15, WIDTH * allegro->screenWidth / MAXRESOLUTION_X, HEIGHT * allegro->screenHeight / MAXRESOLUTION_Y, al_map_rgb(0, 0, 0));
@@ -462,4 +462,12 @@ void drawStartMenu(ALL *allegro) {
 	al_draw_filled_rectangle(5, HEIGHT * allegro->screenHeight / MAXRESOLUTION_Y / 3, WIDTH * allegro->screenWidth / MAXRESOLUTION_X * 0.7, HEIGHT * allegro->screenHeight / MAXRESOLUTION_Y / 3 + 40, al_map_rgb(0, 0, 0));
 	al_draw_text(allegro->font, al_map_rgb(WHITE), 10, HEIGHT * allegro->screenHeight / MAXRESOLUTION_Y / 2 - 30, 0, "Your name:");
 	al_draw_filled_rectangle(5, HEIGHT * allegro->screenHeight / MAXRESOLUTION_Y / 2, WIDTH * allegro->screenWidth / MAXRESOLUTION_X * 0.7, HEIGHT * allegro->screenHeight / MAXRESOLUTION_Y / 2 + 40, al_map_rgb(0, 0, 0));
+}
+
+void drawChooseModeStartMenu(ALL *allegro) {
+	al_set_target_backbuffer(allegro->startMenuDisplay);
+	al_clear_to_color(al_map_rgb(0, 0, 0));
+	al_draw_bitmap(allegro->backgroundStartMenuImage, 0, 0, 0);
+	al_draw_text(allegro->font, al_map_rgb(WHITE), 10, HEIGHT * allegro->screenHeight / MAXRESOLUTION_Y / 3 - 30, 0, "Please, enter IP:");
+	al_draw_text(allegro->font, al_map_rgb(WHITE), 10, HEIGHT * allegro->screenHeight / MAXRESOLUTION_Y / 2 - 30, 0, "Your name:");
 }
