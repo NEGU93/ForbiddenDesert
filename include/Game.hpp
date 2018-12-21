@@ -22,6 +22,10 @@
 #include <algorithm>		//Used to shuffle the array of tiles
 #include <array>
 
+#define DEBUG_GAME
+//#define DEBUG_INIT
+//#define DEBUG_UPDATE_SCREEN
+
 #define MODEBUTTONSNUMBER 7
 #define TILEDECKNUMBER 25
 #define MAXWATERS 5
@@ -33,51 +37,90 @@ enum ModeEnum { NORMAL, REMOVESAND, //Normal Use
 
 class Game {
 public:
-	Game(ALL *allegro, FSMI *gameNetwork);
-    Game(ALL *allegro, Container *info);
+    //! Methods
+	Game() = default;
 	~Game();
-	bool eventHandler(ALL *allegro);
-	bool receiveHandler(ALL* allegro);
+	virtual bool eventHandler(ALL *allegro) = 0;
 	bool getPlayAgain() { return playAgain; }
 	bool getGameOver() { return gameOver; }
 
-private:
+	//! Variables
+    Container info;
+    pos mouse{};
+    bool redraw{};
+
+    ModeEnum modeEnum;				//ModeEnum is used to know in wich mode I am... say.. have to move or remove sand
+    int SandMarkersLeft{};
+    int sandStormLevel{};
+    //double volume;
+    //Decks
+    std::array< StormCard *, CANTOFSTORM> stormCardsDeck{};
+    std::array<Tile *, TILEDECKNUMBER> tilesDeck{};		//Important! its a deck of cards seen as an array, we will use algorithm library to make it work.
+    //int stormCardIndex;			//Indexes for the decks
+    int equipIndex{};
+    int peepOffset{};
+    EquipmentsEnum equipOffset;
+    int firstTimeUpdateScreenChooseEquipment{};		//ChooseEquipment Counter
+    int firstTimeUpdateScreenPeep{};					//Peep Counter
+    // Character Variables
+    bool playAgain{};
+    bool gameOver{};
+    Character *character{};
+    Character *character2{};
+    //Parts
+    Part *engine{};
+    Part *solarCrystal{};
+    Part *propeller{};
+    Part *navigationDeck{};
+    //BUTTONS
+    Button *endTurnButton{};
+    Button *modesButtons[MODEBUTTONSNUMBER]{};
+    Button *watersButton[MAXWATERS]{};
+    //Peep Buttons
+    Button *nextButton{};
+    Button *previousButton{};
+    Button *selectPeepCard{};
+    Button *selectEquipmentCard{};
+    //VolumeButtons
+    Button *muteButton{};
+    Button *noMuteButton{};
+
 	//Methods
 	pos getSpot(int row, int column, ALL* allegro, ALLEGRO_BITMAP* image);		//Gets the pos of the image you must put giving the row and column where the item is.
-	void updateScreen(ALL* allegro);
-	void updateTilesButton(ALL* allegro);
-	void pickUpAction();
+    virtual void updateScreen(ALL* allegro) = 0;
+    virtual void updateTilesButton(ALL* allegro) = 0;
+	virtual void pickUpAction() = 0;
 	//End Of Game
-	bool win(ALL *allegro);
-	bool lose(ALL *allegro);
-	void wannaPlay(ALL *allegro, char ID);
+	virtual bool win(ALL *allegro) = 0;
+	virtual bool lose(ALL *allegro) = 0;
+	virtual void wannaPlay(ALL *allegro, char ID) = 0;
 	//Mouse Methods
-	void click(ALL* allegro);
-	void clickOnPeepMode(ALL* allegro);
-	void clickOnJetPackMode(ALL* allegro);
-	void clickOnTerrascopeMode(ALL* allegro);
-	void clickOnRequestWaterMode(ALL*  allegro);
-	void clickOnOfferEquipmentMode(ALL* allegro);
-	void clickOnRequestEquipmentMode(ALL* allegro);
-	void clickOnOfferWaterMode(ALL* allegro);
-	void clickOnDefaultMode(ALL* allegro);
+	virtual void click(ALL* allegro) = 0;
+    virtual void clickOnPeepMode(ALL* allegro) = 0;
+    virtual void clickOnJetPackMode(ALL* allegro) = 0;
+    virtual void clickOnTerrascopeMode(ALL* allegro) = 0;
+    virtual void clickOnRequestWaterMode(ALL*  allegro) = 0;
+    virtual void clickOnOfferEquipmentMode(ALL* allegro) = 0;
+    virtual void clickOnRequestEquipmentMode(ALL* allegro) = 0;
+    virtual void clickOnOfferWaterMode(ALL* allegro) = 0;
+    virtual void clickOnDefaultMode(ALL* allegro) = 0;
 	void checkMouse(ALL* allegro);
-	void checkTilesButtons(double volume);
-	void clickTilesButtons(ALL *allegro);
-	void clickModesButtons(ALL* allegro);
+	virtual void checkTilesButtons(double volume) = 0;
+    virtual void clickTilesButtons(ALL *allegro) = 0;
+    virtual void clickModesButtons(ALL* allegro) = 0;
 	void clickEquipmentButtons(ALL* allegro);
 	//Perform Action
 	void performTileAction(TilesEnum tileEnum, int index, ALL* allegro);
-	void performEquipmentsAction(EquipmentsEnum equipEnum, ALL *allegro);
+	virtual void performEquipmentsAction(EquipmentsEnum equipEnum, ALL *allegro) = 0;
 	//Tile Deck methods
 	void swapTiles(int i, int j);		//Lets use swap from STL (algorithm)
 	void shuffleTiles();		//Lets use shuffle from STL
 	//Equipments methods
-	void drawEquipment(EquipmentsEnum equipEnum);
-	void chooseOption(ALL* allegro, Container temp);
+	virtual void drawEquipment(EquipmentsEnum equipEnum) = 0;
+
 	//StormCards methods
 	void performStormCardAction(ALL *allegro, StormCardsEnum cardEnum);
-	void drawStormCards(ALL *allegro);
+	virtual void drawStormCards(ALL *allegro) = 0;
 	void swapStormCards(int i, int j);
 	//Initialize Methods
 	bool initializeAllegro(ALL* allegro);
@@ -89,14 +132,14 @@ private:
 	void initializePeepButtons(ALL* allegro);
 	void initializeEquipmentCardButton(ALL* allegro);
 	//Keys Pressed
-	void keyUp(ALL *allegro);
-	void keyDown(ALL *allegro);
-	void keyLeft(ALL *allegro);
-	void keyRight(ALL *allegro);
-	void keyE(ALL* allegro);
-	void keyP(ALL *allegro);
-	void keyR(ALL *allegro);
-	void keyEscape();
+	virtual void keyUp(ALL *allegro) = 0;
+    virtual void keyDown(ALL *allegro) = 0;
+    virtual void keyLeft(ALL *allegro) = 0;
+    virtual void keyRight(ALL *allegro) = 0;
+    virtual void keyE(ALL* allegro) = 0;
+    virtual void keyP(ALL *allegro) = 0;
+    virtual void keyR(ALL *allegro) = 0;
+    void keyEscape();
 	//Peep Methods
 	void nextPeepStormCard();
 	void previousPeepStormCard();
@@ -104,49 +147,6 @@ private:
 	//Offer equipment Methods
 	void nextEquipCard();
 	void previousEquipCard();
-	// ---------------------- Variables ---------------------
-	pos mouse;
-	bool redraw;
-	FSMI *gameNetwork;
-	Container info;
-	bool singlePlayer;
-	ModeEnum modeEnum;				//ModeEnum is used to know in wich mode I am... say.. have to move or remove sand
-	int SandMarkersLeft;
-	int sandStormLevel;
-	Pack gamePack;
-	//double volume;
-	//Decks
-	std::array< StormCard *, CANTOFSTORM> stormCardsDeck;
-	std::array<Tile *, TILEDECKNUMBER> tilesDeck;		//Important! its a deck of cards seen as an array, we will use algorithm library to make it work.
-	//int stormCardIndex;			//Indexes for the decks
-	int equipIndex;
-	int peepOffset;
-	EquipmentsEnum equipOffset;
-	int firstTimeUpdateScreenChooseEquipment;		//ChooseEquipment Counter								
-	int firstTimeUpdateScreenPeep;					//Peep Counter
-	// Character Variables
-	bool turn;							//Used to know which turn is it... true = this computer turn. False = companion turn.
-	bool playAgain;
-	bool gameOver;
-	Character *character;
-	Character *character2;
-	//Parts
-	Part *engine;
-	Part *solarCrystal;
-	Part *propeller;
-	Part *navigationDeck;
-	//BUTTONS
-	Button *endTurnButton;
-	Button *modesButtons[MODEBUTTONSNUMBER];
-	Button *watersButton[MAXWATERS];
-	//Peep Buttons
-	Button *nextButton;
-	Button *previousButton;
-	Button *selectPeepCard;
-	Button *selectEquipmentCard;
-	//VolumeButtons
-	Button *muteButton;
-	Button *noMuteButton;
 };
 
 #endif

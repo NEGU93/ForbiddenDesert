@@ -8,6 +8,7 @@
 #include "Tile.hpp"
 #include "StormCard.hpp"
 #include "ChoosePlayer.hpp"
+#include <map>
 
 #define BUFFERSIZE 255
 #define CANTOFTILES 25
@@ -47,6 +48,14 @@
 #define TIMEOUT 5 //5 seconds for timeout.
 
 enum roles {ARCHEOLOGIST=0x30, CLIMBER, EXPLORER, METEOROLOGIST, NAVIGATOR, WATER_CARRIER};
+static map<roles, string> RolesNames = {
+		{ARCHEOLOGIST, "Archeologist"},
+		{CLIMBER, "Climber"},
+		{EXPLORER, "Explorer"},
+		{METEOROLOGIST, "Meteorologist"},
+		{NAVIGATOR, "Navigator"},
+		{WATER_CARRIER, "Watercarrier"}
+};
 enum EquipmentsEnum{DUNEBLAST=0x01, JETPACK, SOLARSHIELD, TERRASCOPE, SECRETWATERRESERVE,TIMETHROTTLE}; 
 
 int myRand(int i);

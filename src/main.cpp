@@ -3,7 +3,9 @@
 #include "allegro.hpp"
 
 #include "ChoosePlayer.hpp"
-#include "Game.hpp"
+//#include "Game.hpp"
+#include "SinglePlayerGame.hpp"
+#include "MultiPlayerGame.hpp"
 
 /* ------------------- TODO -----------------------
 5. Para poder declarar variables arm� constructores por defecto vacios... estar�a bueno borrarlos y ponerle argumentos por defecto (diapositiva 10-Administraci�n de memoria, pagina 8)
@@ -53,7 +55,7 @@ int main() {
         }
         char rol1 = static_cast<char>(choosePlayer->get_p1_role());
         char rol2 = static_cast<char>(choosePlayer->get_p2_role());
-        cout << "Roles chosen: " << rol1 << " & " << rol2 << endl;
+        cout << "Roles chosen: " << RolesNames[(roles) rol1] << " & " << RolesNames[(roles) rol2] << endl;
         info->startinfo((roles) rol1, (roles) rol2);
 
         //Destroy allegro's things that were initialize in ChoosePlayer
@@ -80,18 +82,17 @@ int main() {
 			gameNetwork->restart(allegro);
 		}
 		if (singlePlayer) {
-		    game = new Game(allegro, info);
+		    game = new SinglePlayerGame(allegro, info);
 		}
 		else {
-            game = new Game(allegro, gameNetwork);
+            game = new MultiPlayerGame(allegro, gameNetwork);
 		}
-
 		stillPlaying = true;
 		while (stillPlaying) {
 			stillPlaying = game->eventHandler(allegro);
 		}
 		al_destroy_display(allegro->display); // If not I'll end up with 2 displays
-	} while (game->getPlayAgain() && !game->getGameOver());
+	} while (game->getPlayAgain() && !game->getGameOver()); // TODO: make them visible
 
 	if(!singlePlayer) {
         delete gameNetwork;
