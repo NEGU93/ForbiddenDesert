@@ -1,9 +1,7 @@
 #include "ChoosePlayer.hpp"
 
-ChoosePlayer::ChoosePlayer(ALL *allegro, char *rol1, char *rol2) {
+ChoosePlayer::ChoosePlayer(ALL *allegro) {
 	initializeAllegro(allegro);
-	this->rol1 = rol1;
-	this->rol2 = rol2;
 	player = 1;
 	// Create all 6 characterButtons
 	archeologistButton = new ArcheologistButton(0, allegro->screenHeight / 2.0, "Resources/Buttons/ArcheologistButton.png", "Resources/Buttons/SelectedArcheologistButton.png", allegro);
@@ -42,72 +40,72 @@ bool ChoosePlayer::eventHandler(ALL *allegro) {
 		//If there whas a selected character, then return true, else return false
 		if (archeologistButton->buttonAction(ev.mouse.x, ev.mouse.y)) {
 			if (player == 1) {
-				*rol1 = ARCHEOLOGIST;
+				rol1 = ARCHEOLOGIST_ROLE;
 				player = 2;
 				return true;
 			}
-			else if (*rol1 != ARCHEOLOGIST) {	//If im player 2, I must check player 1 is not the same character.
-				*rol2 = ARCHEOLOGIST;
+			else if (rol1 != ARCHEOLOGIST_ROLE) {	//If im player 2, I must check player 1 is not the same character.
+				rol2 = ARCHEOLOGIST_ROLE;
 				return false;
 			}
 			return true;		//Player 1 is already this type
 		}
 		if (explorerButton->buttonAction(ev.mouse.x, ev.mouse.y)) { 
 			if (player == 1) {
-				*rol1 = EXPLORER;
+				rol1 = EXPLORER_ROLE;
 				player = 2;
 				return true;
 			}
-			else if (*rol1 != EXPLORER) {	//If im player 2, I must check player 1 is not the same character.
-				*rol2 = EXPLORER;
+			else if (rol1 != EXPLORER_ROLE) {	//If im player 2, I must check player 1 is not the same character.
+				rol2 = EXPLORER_ROLE;
 				return false;
 			}
 			return true;		//Player 1 is already this type
 		}
 		if (navigatorButton->buttonAction(ev.mouse.x, ev.mouse.y)) { 
 			if (player == 1) {
-				*rol1 = NAVIGATOR;
+				rol1 = NAVIGATOR_ROLE;
 				player = 2;
 				return true;
 			}
-			else if (*rol1 != NAVIGATOR) {	//If im player 2, I must check player 1 is not the same character.
-				*rol2 = NAVIGATOR;
+			else if (rol1 != NAVIGATOR_ROLE) {	//If im player 2, I must check player 1 is not the same character.
+				rol2 = NAVIGATOR_ROLE;
 				return false;
 			}
 			return true;		//Player 1 is already this type	 
 		}
 		if (meteorologistButton->buttonAction(ev.mouse.x, ev.mouse.y)) { 
 			if (player == 1) {
-				*rol1 = METEOROLOGIST;
+				rol1 = METEOROLOGIST_ROLE;
 				player = 2;
 				return true;
 			}
-			else if (*rol1 != METEOROLOGIST) {	//If im player 2, I must check player 1 is not the same character.
-				*rol2 = METEOROLOGIST;
+			else if (rol1 != METEOROLOGIST_ROLE) {	//If im player 2, I must check player 1 is not the same character.
+				rol2 = METEOROLOGIST_ROLE;
 				return false;
 			}
 			return true;		//Player 1 is already this type
 		}
 		if (climberButton->buttonAction(ev.mouse.x, ev.mouse.y)) { 
 			if (player == 1) {
-				*rol1 = CLIMBER;
+				rol1 = CLIMBER_ROLE;
 				player = 2;
 				return true;
 			}
-			else if (*rol1 != CLIMBER) {	//If im player 2, I must check player 1 is not the same character.
-				*rol2 = CLIMBER;
+			else if (rol1 != CLIMBER_ROLE) {	//If im player 2, I must check player 1 is not the same character.
+				rol2 = CLIMBER_ROLE;
 				return false;
 			}
 			return true;		//Player 1 is already this type
 		}
 		if (waterCarrierButton->buttonAction(ev.mouse.x, ev.mouse.y)) {
 			if (player == 1) {
-				*rol1 = WATER_CARRIER;
+				rol1 = WATER_CARRIER_ROLE;
 				player = 2;
 				return true;
 			}
-			else if (*rol1 != WATER_CARRIER) {	//If im player 2, I must check player 1 is not the same character.
-				*rol2 = WATER_CARRIER;
+			else if (rol1 != WATER_CARRIER_ROLE) {	//If im player 2, I must check player 1 is not the same character.
+				rol2 = WATER_CARRIER_ROLE;
 				return false;
 			}
 			return true;		//Player 1 is already this type 
@@ -163,25 +161,31 @@ void ChoosePlayer::updateScreen(ALL* allegro) {
 
 bool ChoosePlayer::initializeAllegro(ALL* allegro) {
 	bool state = true;
-	//Display
-	//CODE TO FULLSCREEN, CHANGE IN CASE OF MULFUNCTION
+	//! Display
+	//! CODE TO FULLSCREEN
+#ifndef WINDOWED
 	ALLEGRO_DISPLAY_MODE   disp_data;
 	al_get_display_mode(al_get_num_display_modes() - 1, &disp_data);
 	al_set_new_display_flags(ALLEGRO_FULLSCREEN);
 	allegro->display = al_create_display(disp_data.width, disp_data.height);
 	allegro->screenWidth = disp_data.width;
 	allegro->screenHeight = disp_data.height;
-	//if (state) {
-	//	state = false;
-	//	if (allegro->display = al_create_display(SCREEN_X, SCREEN_Y)) {
-	//		allegro->screenWidth = SCREEN_X;
-	//		allegro->screenHeight = SCREEN_Y;
-	//		//al_destroy_display(allegro->startMenuDisplay);
-	//		al_register_event_source(allegro->events_queue, al_get_display_event_source(allegro->display));
-	//		state = true;
-	//	}
-	//	else { cout << "Failed to create Display" << endl; }
-	//}
+#endif
+	//! Code for windowed mode
+#ifdef WINDOWED
+	if (state) {
+		state = false;
+		if (allegro->display = al_create_display(SCREEN_X, SCREEN_Y)) {
+			allegro->screenWidth = SCREEN_X;
+			allegro->screenHeight = SCREEN_Y;
+			//al_destroy_display(allegro->startMenuDisplay);
+			al_register_event_source(allegro->events_queue, al_get_display_event_source(allegro->display));
+			al_set_window_title(allegro->display, "Choose Character");
+			state = true;
+		}
+		else { cout << "Failed to create Display" << endl; }
+	}
+#endif
 	//Load Images
 	if (state) {
 		state = false;
@@ -196,7 +200,7 @@ bool ChoosePlayer::initializeAllegro(ALL* allegro) {
 	}
 
 	//Audio
-	if (allegro->backgroundMusic != NULL) {
+	if (allegro->backgroundMusic != nullptr) {
 		al_play_sample(allegro->backgroundMusic, 1, 0.0, 1.0, ALLEGRO_PLAYMODE_LOOP, &allegro->backgroundMusicID);
 	}
 

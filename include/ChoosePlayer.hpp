@@ -11,18 +11,26 @@
 #include "MeteorologistButton.hpp"
 #include "ClimberButton.hpp"
 
+//enum roles {ARCHEOLOGIST=0x30, CLIMBER, EXPLORER, METEOROLOGIST, NAVIGATOR, WATER_CARRIER};
+// TODO: have to basically repeat the enum here.
+enum Role {ARCHEOLOGIST_ROLE=0x30, CLIMBER_ROLE, EXPLORER_ROLE, METEOROLOGIST_ROLE, NAVIGATOR_ROLE, WATER_CARRIER_ROLE};
+
 //I made this class static because I'll only have one game
 /*static*/ class ChoosePlayer {
 public:
-	ChoosePlayer(ALL *allegro, char* rol1, char* rol2);
+	ChoosePlayer(ALL *allegro);
 	~ChoosePlayer();
 	bool eventHandler(ALL *allegro);
 	bool initializeAllegro(ALL* allegro);
+
+	Role get_p1_role() { return rol1; }
+	Role get_p2_role() { return rol2; }
 private:
 	//Buffer
 	int player;
-	char *rol1;
-	char *rol2;
+	Role rol1;
+	Role rol2;
+
 	//Methods
 	void updateScreen(ALL *allegro);
 	//Variables

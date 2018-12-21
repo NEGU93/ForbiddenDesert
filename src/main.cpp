@@ -24,7 +24,7 @@ viajando de un lado hacia el otro del tunel repetidas veces. (Creo que arreglado
 
 int main() {
     //Allegro initialization
-    ALL allegroData = {NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL};
+    ALL allegroData = {0, 0, 0, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr};
     ALL *allegro = &allegroData;
     if (!init_allegro(allegro)) {
         cout << "Failed to initialize allegro. Closing Forbidden Desert." << endl;
@@ -38,24 +38,33 @@ int main() {
     while (chooseMode) {
         chooseMode = startMenu->eventHandler(allegro);
     }
+    al_destroy_display(allegro->startMenuDisplay);
     singlePlayer = startMenu->get_player_mode();
+    delete startMenu;
 
+    Container *info = new Container();
     if (singlePlayer) {
         cout << "Single Player Mode" << endl;
-        char *rol1;
-        char *rol2;
         stillPlaying = true;
         ChoosePlayer *choosePlayer;
-        choosePlayer = new ChoosePlayer(allegro, rol1, rol2);
+        choosePlayer = new ChoosePlayer(allegro);
         while (stillPlaying) {
             stillPlaying = choosePlayer->eventHandler(allegro);
         }
-        cout << "Roles chosen: " << rol1 << rol2 << endl;
+        char rol1 = static_cast<char>(choosePlayer->get_p1_role());
+        char rol2 = static_cast<char>(choosePlayer->get_p2_role());
+        cout << "Roles chosen: " << rol1 << " & " << rol2 << endl;
+        info->startinfo((roles) rol1, (roles) rol2);
+
+        //Destroy allegro's things that were initialize in ChoosePlayer
+        al_unregister_event_source(allegro->events_queue, al_get_display_event_source(allegro->display));
+        al_destroy_display(allegro->display);
+        delete choosePlayer;
     }
     else {
         cout << "Multi Player Mode" << endl;
         do { //Connection
-            if (gameNetwork != NULL)
+            if (gameNetwork != nullptr)
                 delete gameNetwork;
             gameNetwork = new FSMI;
             gameNetwork->start(allegro);
@@ -63,20 +72,25 @@ int main() {
         } while (gameNetwork->net.abort);
     }
 	//Game
-	return 0;
+	cout << "Players chosen. Ready to start game" << endl;
 	Game *game = nullptr;
 	do {
-		if (game != nullptr) {
+		if (game != nullptr) {  // New game?
 			delete game;
 			gameNetwork->restart(allegro);
 		}
-		game = new Game(allegro, gameNetwork);
+		if (singlePlayer) {
+		    game = new Game(allegro, info);
+		}
+		else {
+            game = new Game(allegro, gameNetwork);
+		}
+
 		stillPlaying = true;
 		while (stillPlaying) {
 			stillPlaying = game->eventHandler(allegro);
 		}
-		//ESTO LO HICE PARA QUE NO APAREZCAN DOS DISPLAY UNA VEZ QUE QUIERO JUGAR DE NUEVO
-		al_destroy_display(allegro->display);
+		al_destroy_display(allegro->display); // If not I'll end up with 2 displays
 	} while (game->getPlayAgain() && !game->getGameOver());
 
 	if(!singlePlayer) {

@@ -146,9 +146,9 @@ Tile::Tile(TilesEnum tileType, ALL* allegro) {
 				tileCoords.y = 0;
 			}
 		}
-		else { cout << "Failed to load sandMarkerImage.png" << endl; }
+		else { cerr << "Failed to load sandMarkerImage.png" << endl; }
 	}
-	else { cout << "Failed to load front of card Image" << endl; }
+	else { cerr << "Failed to load front of card Image for " << TilesNames[tileType] << endl; }
 }
 void Tile::setCoord(pos coords) { 
 	tileCoords = coords;

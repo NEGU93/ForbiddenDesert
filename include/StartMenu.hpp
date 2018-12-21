@@ -20,7 +20,7 @@ private:
 	bool redraw;
 	bool singlePlayer;
 
-	ALLEGRO_BITMAP	*background;
+	//ALLEGRO_BITMAP	*background;
 	// Buttons
 	Button *singlePlayerButton;
 	Button *multiPlayerButton;

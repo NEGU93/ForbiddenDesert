@@ -1,5 +1,7 @@
 #include "Packages.hpp"
 #include <iostream>
+#include <include/Packages.hpp>
+
 
 //Constructor
 Pack::Pack(PolonetConn connection){
@@ -229,10 +231,115 @@ void Pack::waitForAck(ALL *allegro) {
 	al_set_timer_count(allegro->timeout, 0);
 }
 
+void Container::startinfo(roles rol1, roles rol2) {
+	char* buffer;
+	char size = 3 * sizeof(char) + CANTOFEQUIPMENT + CANTOFSTORM + CANTOFTILES;
+	buffer = new char[size];
+	buffer[0] = START_INFO;
+	buffer[1]= START_INFO;
+	//Choose Player
+	myRol = (roles) rol1;
+	friendRol = (roles) rol2;
+	int i = 3;
+	buffer[i++] = STORM;
+	buffer[i++] = CRASHSITE;
+	buffer[i++] = LAUNCHPAD;
+	buffer[i++] = DEFAULT;
+	int c = 1;
+	while (c <= 3) {
+		buffer[i++] = TUNNEL;
+		c++;
+	}
+	c = 1;
+	while (c <= 2) {
+		buffer[i++] = WATER;
+		c++;
+	}
+	buffer[i++] = ENGINECOLUMN;
+	buffer[i++] = ENGINEROW;
+	buffer[i++] = SOLARCRYSCOLUMN;
+	buffer[i++] = SOLARCRYSROW;
+	buffer[i++] = NAVIGATIONCOLUMN;
+	buffer[i++] = NAVIGATIONROW;
+	buffer[i++] = PROPELLERCOLUMN;
+	buffer[i++] = PROPELLERROW;
+	buffer[i++] = GEAR1;
+	buffer[i++] = GEAR2;
+	buffer[i++] = GEAR3;
+	buffer[i++] = GEAR4;
+	buffer[i++] = GEAR5;
+	buffer[i++] = GEAR6;
+	buffer[i++] = GEAR7;
+	buffer[i] = GEAR8;
+
+	std:: random_shuffle(&buffer[3],&buffer[i],myRand);		//Mezclo todos los tiles
+	int search;
+	for(search = 0; buffer[search] != STORM; search++);		// Busco la sand storm para reubicarla
+	std::swap<char>(buffer[search], buffer[15]);			// Reubico la sand storm en el medio, (15 del buffer: la mitad de CANTOFTILES + 3)
+
+	for (int a = 0; a < CANTOFTILES; a++) {
+		tiles[a] = (TilesEnum)buffer[a + 3];				// Guardo la informacion del tablero para que la retenga luego de enviarla
+	}
+	//SandStormCards
+	c = 1;
+	i++;
+	while (c < 3) { //Create 2 of each
+		buffer[i++] = RIGHT1;
+		buffer[i++] = RIGHT2;
+		buffer[i++] = RIGHT3;
+		buffer[i++] = LEFT1;
+		buffer[i++] = LEFT2;
+		buffer[i++] = LEFT3;
+		buffer[i++] = UP1;
+		buffer[i++] = UP2;
+		buffer[i++] = UP3;
+		buffer[i++] = DOWN1;
+		buffer[i++] = DOWN2;
+		buffer[i++] = DOWN3;
+		c++;
+	}
+	c = 1;
+	while (c < 4) {
+		buffer[i++] = STORMUP;
+		c++;
+	}
+	c = 1;
+	while (c < 5) {
+		buffer[i++] = SUNBEATSDOWN;
+		c++;
+	}
+
+	std::random_shuffle(&buffer[CANTOFTILES + 3], &buffer[i], myRand);	//Mezclo todos los tiles... (no son los storm cards?)
+	//Harcodie para poder debuggear el SolarShield
+	for (int a = 0; a < CANTOFSTORM; a++) {
+		storm[a] = (StormCardsEnum)buffer[a + CANTOFTILES + 3];	//Guardo la informacion del tablero para que la retenga luego de enviarla
+	}
+	//Equipment Cards
+	c = 1;
+	while (c < 4) {
+		buffer[i++] = DUNEBLAST;
+		buffer[i++] = JETPACK;
+		c++;
+	}
+	c=1;
+	while (c < 3) {
+		buffer[i++] = SOLARSHIELD;
+		buffer[i++] = TERRASCOPE;
+		c++;
+	}
+	buffer[i++] = SECRETWATERRESERVE;
+	buffer[i] = TIMETHROTTLE;
+
+	std::random_shuffle(&buffer[CANTOFTILES + CANTOFSTORM + 3], &buffer[i], myRand);	//Mezclo todos los tiles
+	buffer[CANTOFTILES + CANTOFSTORM + 3] = TIMETHROTTLE;//FOR DEBUGGING
+	for (int a = 0; a < CANTOFEQUIPMENT; a++) {
+		equipment[a] = (EquipmentsEnum)buffer[a + CANTOFTILES + CANTOFSTORM + 3];	//Guardo la informacion del tablero para que la retenga luego de enviarla
+	}
+}
 Container Pack::startinfo(ALL* allegro){
 	Container info;
-	if (buffer != NULL)
-		delete[] buffer;
+
+	delete[] buffer;
 	size = 3 * sizeof(char) + CANTOFEQUIPMENT + CANTOFSTORM + CANTOFTILES;
 	buffer = new char[size];
 	buffer[0] = START_INFO;
@@ -240,13 +347,15 @@ Container Pack::startinfo(ALL* allegro){
 	//Choose Player
 	bool stillPlaying = true;
 	ChoosePlayer *choosePlayer;
-	choosePlayer = new ChoosePlayer(allegro, &buffer[1], &buffer[2]);
+	choosePlayer = new ChoosePlayer(allegro /*, &buffer[1], &buffer[2]*/ );	// TODO: change this or multiplayer broken
 	while (stillPlaying) {
 		stillPlaying = choosePlayer->eventHandler(allegro);
 	}
 	//while ((buffer[2] = rolesort()) == buffer[1]);
-	info.myRol = (roles)buffer[1];	//Guardo mi rol
-	info.friendRol = (roles)buffer[2];	//Guardo rol de mi amigo
+	//info.myRol = (roles)buffer[1];			// Guardo mi rol
+	//info.friendRol = (roles)buffer[2];		// Guardo rol de mi amigo
+	info.myRol = (roles) choosePlayer->get_p1_role();
+	info.friendRol = (roles) choosePlayer->get_p2_role();
 	int i = 3;
 	buffer[i++] = STORM;
 	buffer[i++] = CRASHSITE;
@@ -279,13 +388,13 @@ Container Pack::startinfo(ALL* allegro){
 	buffer[i++] = GEAR7;
 	buffer[i] = GEAR8;
 	
-	std:: random_shuffle(&buffer[3],&buffer[i],myRand);	//Mezclo todos los tiles
+	std:: random_shuffle(&buffer[3],&buffer[i],myRand);		//Mezclo todos los tiles
 	int search;
-	for(search = 0; buffer[search] != STORM; search++);	// Busco la sand storm para reubicarla
-	std::swap<char>(buffer[search], buffer[15]);	// Reubico la sand storm en el medio, (15 del buffer: la mitad de CANTOFTILES + 3)
+	for(search = 0; buffer[search] != STORM; search++);		// Busco la sand storm para reubicarla
+	std::swap<char>(buffer[search], buffer[15]);			// Reubico la sand storm en el medio, (15 del buffer: la mitad de CANTOFTILES + 3)
 	
 	for (int a = 0; a < CANTOFTILES; a++) {
-		info.tiles[a] = (TilesEnum)buffer[a + 3];	//Guardo la informacion del tablero para que la retenga luego de enviarla
+		info.tiles[a] = (TilesEnum)buffer[a + 3];			//Guardo la informacion del tablero para que la retenga luego de enviarla
 	}
 	//SandStormCards
 	c = 1;
@@ -550,6 +659,7 @@ void Pack::drawstrcard(char first, char second, char third, char forth, char fif
 		break;
 	}
 }
+
 
 void Container:: addName(char* name){
 	strncpy(this->name, name, SIZEOFNAME);

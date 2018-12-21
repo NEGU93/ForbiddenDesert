@@ -4,18 +4,68 @@
 //Used to shuffle
 #include <random>
 #include <chrono>
+#include <include/Game.hpp>
+
+#define DEBUG_GAME
+//#define DEBUG_INIT
+#define DEBUG_UPDATE_SCREEN
 
 #define TIME_TERRASCOPE 3000
+/**
+ * Single Player Constructor
+ * */
+Game::Game(ALL *allegro, Container *info) : info(*info) {
+    this->gameNetwork = nullptr;
+    singlePlayer = true;
+    //allegro->volume = 1;
+    if (initializeAllegro(allegro)) {
+        //Conection
+        turn = true;
+        //gamePack.connection = nullptr;    //Guardo conexion en el paquete actual
+        // Characters
+        initializeCharacters(this->info, allegro);
+        // Buttons
+        initializeButtons(allegro);
+        // Cards and Decks
+        initializeBoard(allegro);
+        initializeStormCards(allegro);
+        // Parts
+        engine = new Part("Resources/Parts/engineImage.png");
+        solarCrystal = new Part("Resources/Parts/solarCrystalImage.png");
+        propeller = new Part("Resources/Parts/propellerImage.png");
+        navigationDeck = new Part("Resources/Parts/navegationDeckImage.png");
+        // Indexes
+        equipIndex = 0;             // TODO: eliminar esto en un futuro
+        peepOffset = 0;
+        // Data
+        SandMarkersLeft = 40;
+        sandStormLevel = 3;         // TODO: Let Player choose dificulty
 
+        mouse.x = static_cast<int>(allegro->screenWidth / 2.0);
+        mouse.y = static_cast<int>(allegro->screenHeight / 2.0);
+        redraw = true;
+        gameOver = false;
+        playAgain = false;
+
+        modeEnum = NORMAL;
+#ifdef DEBUG_GAME
+        cout << "Constructor of Game done!" << endl;
+#endif
+    } else { cout << "Couldn't initialize allegro" << endl; }
+}
+
+/**
+ * Multiplayer Constructor
+ * */
 Game::Game(ALL *allegro, FSMI *gameNetwork) {
     this->gameNetwork = gameNetwork;
+    singlePlayer = false;
     //allegro->volume = 1;
     if (initializeAllegro(allegro)) {
         //Conection
         Container temp = this->gameNetwork->getInfo();
-        if (gameNetwork->getInfo().myTurn == I_START)
-            turn = true;
-        else turn = false;
+        turn = (gameNetwork->getInfo().myTurn == I_START);
+
         gamePack.connection = gameNetwork->net.connection;    //Guardo conexion en el paquete actual
         //Characters
         initializeCharacters(temp, allegro);
@@ -36,8 +86,8 @@ Game::Game(ALL *allegro, FSMI *gameNetwork) {
         SandMarkersLeft = 40;
         sandStormLevel = 3; //TODO: CUAL ERA EL NUMERO REAL? (era 3 jaja igual no cuesta NADA dejar a el jugador elegir la dificultad y queda mas copado)
 
-        mouse.x = allegro->screenWidth / 2.0;
-        mouse.y = allegro->screenHeight / 2.0;
+        mouse.x = static_cast<int>(allegro->screenWidth / 2.0);
+        mouse.y = static_cast<int>(allegro->screenHeight / 2.0);
         redraw = true;
         gameOver = false;
         playAgain = false;
@@ -45,7 +95,7 @@ Game::Game(ALL *allegro, FSMI *gameNetwork) {
         modeEnum = NORMAL;
     } else { cout << "Couldn't initialize allegro" << endl; }
 }
-/*-------------------------------------------------------------------------------------------------------------------
+/**------------------------------------------------------------------------------------------------------------------
 * eventHandler:																										*
 *			Core of the class, waits for events from keyboard, mouse, etc. Uses allegro events and acts acordingly.	*
 * Practically the only function available (public) of the class.													*
@@ -61,6 +111,9 @@ bool Game::eventHandler(ALL *allegro) {
     bool stillPlaying = true;
     ALLEGRO_EVENT ev;
     al_wait_for_event(allegro->events_queue, &ev);
+/*#ifdef DEBUG_GAME
+    cout << "EventHandler called "<< endl;
+#endif*/
 
     if (ev.type == ALLEGRO_EVENT_TIMER) { redraw = true; }
     else if (ev.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
@@ -68,17 +121,14 @@ bool Game::eventHandler(ALL *allegro) {
         gamePack.sendPack();
         gamePack.waitForAck(allegro);
         stillPlaying = false;
-    }
-    else if (ev.type == ALLEGRO_EVENT_MOUSE_AXES || ev.type == ALLEGRO_EVENT_MOUSE_ENTER_DISPLAY) {
+    } else if (ev.type == ALLEGRO_EVENT_MOUSE_AXES || ev.type == ALLEGRO_EVENT_MOUSE_ENTER_DISPLAY) {
         mouse.x = ev.mouse.x;
         mouse.y = ev.mouse.y;
         checkMouse(allegro);
-    }
-    else if (ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP) {
+    } else if (ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP) {
         if (ev.mouse.button == SECONDARY_BUTTON) { keyEscape(); }
         else click(allegro);
-    }
-    else if (ev.type == ALLEGRO_EVENT_KEY_UP) {
+    } else if (ev.type == ALLEGRO_EVENT_KEY_UP) {
         if (turn) { //Check if is my turn tu play... else... do nothing... just wait ^^
             switch (ev.keyboard.keycode) {
                 case ALLEGRO_KEY_ESCAPE: //In case you want to cancel any mode you've played before.
@@ -111,7 +161,7 @@ bool Game::eventHandler(ALL *allegro) {
                     break;
                 case ALLEGRO_KEY_R:
                     keyR(allegro);
-                    if (ArcheologistCharacter *explorerCharacter = dynamic_cast<ArcheologistCharacter *>(character)) {
+                    if (auto *explorerCharacter = dynamic_cast<ArcheologistCharacter *>(character)) {
                         if (modeEnum == REMOVESAND) {
                             if (tilesDeck[character->getCardIndex()]->haveSand()) {
                                 tilesDeck[character->getCardIndex()]->removeSand();
@@ -146,7 +196,7 @@ bool Game::eventHandler(ALL *allegro) {
     }
     //this 'if' checks if the other player I'm moving has already moved 3 spaces... if so... get out of the move other mode
     if (modeEnum == MOVEOTHER) {
-        if (NavigatorCharacter *navigatorCharacter = dynamic_cast<NavigatorCharacter *>(character)) {
+        if (auto *navigatorCharacter = dynamic_cast<NavigatorCharacter *>(character)) {
             if (!navigatorCharacter->havePartnersMovesLeft()) {
                 modeEnum = NORMAL;
                 character2->resetNumberOfMoves();
@@ -156,16 +206,20 @@ bool Game::eventHandler(ALL *allegro) {
     }
     //checks if win or lose
     if (redraw && al_is_event_queue_empty(allegro->events_queue)) {
+/*#ifdef DEBUG_GAME
+        cout << "Redraw"<< endl;
+#endif*/
         if (turn) {
             if (lose(allegro)) { stillPlaying = false; }
             else if (win(allegro)) { stillPlaying = false; }
-        } else { stillPlaying = receiveHandler(allegro); }        //Handler of polonet
+        } else if (!singlePlayer) { stillPlaying = receiveHandler(allegro); }        //Handler of polonet
         updateScreen(allegro);
     }
     if (!turn) { stillPlaying = receiveHandler(allegro); } //Redundance make it more difficult to lose a command.
     return stillPlaying;
 }
-/*reciveHandler takes care of the connecion part. While in recibe handler it will check if there was an package sent by polonet and act acordingly.
+/**
+* reciveHandler takes care of the connecion part. While in recibe handler it will check if there was an package sent by polonet and act acordingly.
 *		Similar to eventHandler. But takes care of polonet insted of allegro. Between both functions they take care of all the events in the game class.
 */
 bool Game::receiveHandler(ALL *allegro) {
@@ -458,8 +512,7 @@ void Game::wannaPlay(ALL *allegro, char ID) {
         if (ID == WE_LOST) {
             al_draw_text(allegro->gameFont, al_map_rgb(WHITE), allegro->screenWidth / 2, allegro->screenHeight * 0.4,
                          ALLEGRO_ALIGN_CENTRE, "WE LOST");
-        }
-        else if (ID == WE_WON) {
+        } else if (ID == WE_WON) {
             al_draw_text(allegro->gameFont, al_map_rgb(WHITE), allegro->screenWidth / 2, allegro->screenHeight * 0.4,
                          ALLEGRO_ALIGN_CENTRE, "WE WON");
         }
@@ -555,6 +608,9 @@ pos Game::getSpot(int row, int column, ALL *allegro, ALLEGRO_BITMAP *image) {
     return tempPos;
 }
 void Game::updateScreen(ALL *allegro) {
+#ifdef DEBUG_UPDATE_SCREEN
+    cout << "Update Screen" << endl;
+#endif
     /* Updates the screen */
     redraw = false;
     switch (modeEnum) {
@@ -615,24 +671,42 @@ void Game::updateScreen(ALL *allegro) {
             selectEquipmentCard->updateButton(allegro);
             break;
         default:
+#ifdef DEBUG_UPDATE_SCREEN
+            cout << "Default case" << endl;
+#endif
             al_clear_to_color(al_map_rgb(0, 0, 0));
             al_draw_bitmap(allegro->fondo, 0, 0, 0);
             //Update Tiles
+#ifdef DEBUG_UPDATE_SCREEN
+            cout << "Update Tiles" << endl;
+#endif
             pos tempPos;
             for (uint i = 0; i < tilesDeck.size(); i++) {
                 tempPos = getSpot(i % 5, i / 5, allegro, tilesDeck[i]->getTileBackImage());
                 tilesDeck[i]->setCoord(tempPos);
             }
-            for (uint i = 0; i < tilesDeck.size(); i++) {
-                tilesDeck[i]->updateTile(allegro);
+#ifdef DEBUG_UPDATE_SCREEN
+            cout << "Update Tiles ..." << endl;
+#endif
+            for (auto &i : tilesDeck) {
+                i->updateTile(allegro);
             }
             //End of Turn Button
+#ifdef DEBUG_UPDATE_SCREEN
+            cout << "Update End of Turn Button" << endl;
+#endif
             endTurnButton->updateButton(allegro);
             if (allegro->volume == 0) { muteButton->updateButton(allegro); }
             else { noMuteButton->updateButton(allegro); }
             //Tiles Buttons
+#ifdef DEBUG_UPDATE_SCREEN
+            cout << "Update Tiles Button" << endl;
+#endif
             if (turn) { updateTilesButton(allegro); } //Don't let the player think he can still move
             //Update Characters
+#ifdef DEBUG_UPDATE_SCREEN
+            cout << "Update Characters" << endl;
+#endif
             if (turn) {
                 character->updateChar(allegro, 1, endTurnButton->getMiddleOfX(),
                                       endTurnButton->getMiddleOfY()); //Character must be after Tiles
@@ -642,6 +716,9 @@ void Game::updateScreen(ALL *allegro) {
                 character2->updateChar(allegro, 2, endTurnButton->getMiddleOfX(), endTurnButton->getMiddleOfY());
             }
             //Update Parts
+#ifdef DEBUG_UPDATE_SCREEN
+            cout << "Update Parts" << endl;
+#endif
             propeller->updatePart(allegro);
             solarCrystal->updatePart(allegro);
             navigationDeck->updatePart(allegro);
@@ -649,44 +726,32 @@ void Game::updateScreen(ALL *allegro) {
             int i = 0;
             if (engine->getPickedState()) {
                 al_draw_bitmap(allegro->partsImages[i], allegro->screenWidth / 4, allegro->screenHeight / 5 + i *
-                                                                                                              al_get_bitmap_height(
-                                                                                                                      allegro->partsImages[i]),
-                               0);
-            }
-            else {
+                al_get_bitmap_height(allegro->partsImages[i]), 0);
+            } else {
                 al_draw_bitmap(allegro->partsImages[i + 4], allegro->screenWidth / 4,
                                allegro->screenHeight / 5 + i * al_get_bitmap_height(allegro->partsImages[i]), 0);
             }
             i++;
             if (navigationDeck->getPickedState()) {
                 al_draw_bitmap(allegro->partsImages[i], allegro->screenWidth / 4, allegro->screenHeight / 5 + i *
-                                                                                                              al_get_bitmap_height(
-                                                                                                                      allegro->partsImages[i]),
-                               0);
-            }
-            else {
+                al_get_bitmap_height(allegro->partsImages[i]), 0);
+            } else {
                 al_draw_bitmap(allegro->partsImages[i + 4], allegro->screenWidth / 4,
                                allegro->screenHeight / 5 + i * al_get_bitmap_height(allegro->partsImages[i]), 0);
             }
             i++;
             if (propeller->getPickedState()) {
                 al_draw_bitmap(allegro->partsImages[i], allegro->screenWidth / 4, allegro->screenHeight / 5 + i *
-                                                                                                              al_get_bitmap_height(
-                                                                                                                      allegro->partsImages[i]),
-                               0);
-            }
-            else {
+                al_get_bitmap_height(allegro->partsImages[i]), 0);
+            } else {
                 al_draw_bitmap(allegro->partsImages[i + 4], allegro->screenWidth / 4,
                                allegro->screenHeight / 5 + i * al_get_bitmap_height(allegro->partsImages[i]), 0);
             }
             i++;
             if (solarCrystal->getPickedState()) {
                 al_draw_bitmap(allegro->partsImages[i], allegro->screenWidth / 4, allegro->screenHeight / 5 + i *
-                                                                                                              al_get_bitmap_height(
-                                                                                                                      allegro->partsImages[i]),
-                               0);
-            }
-            else {
+                al_get_bitmap_height(allegro->partsImages[i]), 0);
+            } else {
                 al_draw_bitmap(allegro->partsImages[i + 4], allegro->screenWidth / 4,
                                allegro->screenHeight / 5 + i * al_get_bitmap_height(allegro->partsImages[i]), 0);
             }
@@ -695,8 +760,7 @@ void Game::updateScreen(ALL *allegro) {
                 modesButtons[i]->updateButton(allegro);
             }
             if (MeteorologistCharacter *meteorologistCharacter = dynamic_cast<MeteorologistCharacter *>(character)) {
-                meteorologistCharacter->updateMeteorologistButton(
-                        allegro);    //Only display the button for the one who can use it... XD
+                meteorologistCharacter->updateMeteorologistButton(allegro);    //Only display the button for the one who can use it... XD
             } else if (ClimberCharacter *climberCharacter = dynamic_cast<ClimberCharacter *>(character)) {
                 climberCharacter->updateClimber(allegro);
             } else if (WaterCarrierCharacter *waterCarrierCharacter = dynamic_cast<WaterCarrierCharacter *>(character)) {
@@ -715,6 +779,9 @@ void Game::updateScreen(ALL *allegro) {
             if (SandMarkersLeft < 0) { SandMarkersLeft = 0; }
             al_draw_textf(allegro->gameFont, al_map_rgb(BLACK), allegro->screenWidth * 30 / 34,
                           allegro->screenHeight * 25 / 32, ALLEGRO_ALIGN_LEFT, "%d", SandMarkersLeft);
+#ifdef DEBUG_UPDATE_SCREEN
+            cout << "Default case done" << endl;
+#endif
     }
     if (modeEnum == OFFERWATERMODE || modeEnum == REQUESTWATERMODE) {
         al_draw_bitmap(allegro->menuBackgroundImage, 0, 0, 0);
@@ -729,8 +796,14 @@ void Game::updateScreen(ALL *allegro) {
         }
     }
     al_flip_display();
+#ifdef DEBUG_UPDATE_SCREEN
+    cout << "Update Done" << endl;
+#endif
 }
 void Game::updateTilesButton(ALL *allegro) {
+#ifdef DEBUG_UPDATE_SCREEN
+    cout << "Update Tiles Button" << endl;
+#endif
     //Equipments Mode
     if (modeEnum == JETPACKMODE) {
         for (int i = 0; i < TILEDECKNUMBER; i++) {
@@ -880,7 +953,7 @@ void Game::updateTilesButton(ALL *allegro) {
         }
     }
 }
-//Decks Swap/Shuffle Methods
+//! Decks Swap/Shuffle Methods
 void Game::shuffleTiles() {
     /* This function automatically shuffles the tile Deck*/
     uint seed = chrono::system_clock::now().time_since_epoch().count();    //Magic, its to make the suffle work, something about using a counter to set the value.
@@ -898,7 +971,7 @@ void Game::swapStormCards(int i, int j) {
     /* swap storm card i with storm card j */
     swap(stormCardsDeck[i], stormCardsDeck[j]);
 }
-//Perform Actions
+//! Perform Actions
 void Game::performTileAction(TilesEnum tileEnum, int index, ALL *allegro) {
     /* When the tile gets excavated, this function is runned for it to perform the action of this particular tile
 	Thats why an tileEnum must be passed to tell the function which tile was turned up.
@@ -1349,7 +1422,7 @@ void Game::performStormCardAction(ALL *allegro, StormCardsEnum cardEnum) {
 
     rotate(stormCardsDeck.begin(), stormCardsDeck.begin() + 1, stormCardsDeck.end());
 }
-//Draw Methods
+//! Draw Methods
 void Game::drawEquipment(EquipmentsEnum equipEnum) {
     /* Gets the equipment and adds it to the player */
     switch (equipEnum) {
@@ -1421,11 +1494,18 @@ void Game::drawStormCards(ALL *allegro) {
         }
     }
 }
-//Initialize Methods
+//! Initialize Methods
 void Game::initializeBoard(ALL *allegro) {
+#ifdef DEBUG_INIT
+    cout << "Initialize Board" << endl;
+#endif
     //Set Tiles
     for (uint i = 0; i < tilesDeck.size(); i++) {
-        tilesDeck[i] = new Tile(gameNetwork->getInfo().tiles[i], allegro);
+        if (singlePlayer) {
+            tilesDeck[i] = new Tile(info.tiles[i], allegro);
+        } else {
+            tilesDeck[i] = new Tile(gameNetwork->getInfo().tiles[i], allegro);
+        }
     }
     //Set the sands on the tiles
     for (int i = 1; i < 12; i++) {
@@ -1438,34 +1518,36 @@ void Game::initializeBoard(ALL *allegro) {
         if (tilesDeck[i]->gettileType() == CRASHSITE) {
             character->setPos(i % 5, i / 5);
             character2->setPos(i % 5, i / 5);
-            tilesDeck[i]->setTurned(true);        //TURN CRASHSITE TO MAKE IT NO POSIBLE TO LOSE A MOVEMENT DIGGING IT.
+            tilesDeck[i]->setTurned(true);        // TURN CRASHSITE TO MAKE IT NO POSIBLE TO LOSE A MOVEMENT DIGGING IT.
             i = tilesDeck.size();
         }
     }
 
-    character->resetNumberOfMoves();    //This is done because "initializeBoard" decreses the character number of moves by one
+    character->resetNumberOfMoves();    // This is done because "initializeBoard" decreses the character number of moves by one
     character2->resetNumberOfMoves();
 }
 bool Game::initializeAllegro(ALL *allegro) {
     bool state = true;
-    /*TODO: lo comento porque es dificil para debuguear... luego agregarlo. tira mas facha*/
+#ifndef WINDOWED
     ALLEGRO_DISPLAY_MODE disp_data;
     al_get_display_mode(al_get_num_display_modes() - 1, &disp_data);
     al_set_new_display_flags(ALLEGRO_FULLSCREEN);
     allegro->display = al_create_display(disp_data.width, disp_data.height);
     allegro->screenWidth = disp_data.width;
     allegro->screenHeight = disp_data.height;
-    //if (state) {
-    //	state = false;
-    //	if (allegro->display = al_create_display(SCREEN_X, SCREEN_Y)) {
-    //		allegro->screenWidth = SCREEN_X;
-    //		allegro->screenHeight = SCREEN_Y;
-    //		//if (allegro->startMenuDisplay != NULL) { al_destroy_display(allegro->startMenuDisplay); } //Just in case
-    //		al_register_event_source(allegro->events_queue, al_get_display_event_source(allegro->display));
-    //		state = true;
-    //	}
-    //	else { cout << "Failed to create Display" << endl; }
-    //}
+#endif
+#ifdef WINDOWED
+    if (state) {
+        state = false;
+        if (allegro->display = al_create_display(SCREEN_X, SCREEN_Y)) {
+            allegro->screenWidth = SCREEN_X;
+            allegro->screenHeight = SCREEN_Y;
+            //if (allegro->startMenuDisplay != NULL) { al_destroy_display(allegro->startMenuDisplay); } //Just in case
+            al_register_event_source(allegro->events_queue, al_get_display_event_source(allegro->display));
+            state = true;
+        } else { cout << "Failed to create Display" << endl; }
+    }
+#endif
     //Load Images
     if (state) {
         state = false;
@@ -1498,13 +1580,22 @@ bool Game::initializeAllegro(ALL *allegro) {
     return state;
 }
 void Game::initializeStormCards(ALL *allegro) {
-    //create storm cards Deck
-    int i = 0;
+#ifdef DEBUG_INIT
+    cout << "Initialize Storm Cards" << endl;
+#endif
+    // create storm cards Deck
     for (uint i = 0; i < stormCardsDeck.size(); i++) {
-        stormCardsDeck[i] = new StormCard(gameNetwork->getInfo().storm[i], allegro);
+        if (singlePlayer) {
+            stormCardsDeck[i] = new StormCard(info.storm[i], allegro);
+        } else {
+            stormCardsDeck[i] = new StormCard(gameNetwork->getInfo().storm[i], allegro);
+        }
     }
 }
 void Game::initializeCharacters(Container info, ALL *allegro) {
+#ifdef DEBUG_INIT
+    cout << "Initialize Characters" << endl;
+#endif
     //Initailize both characters
     switch (info.myRol) {
         case ARCHEOLOGIST:
@@ -1560,6 +1651,9 @@ void Game::initializeCharacters(Container info, ALL *allegro) {
     }
 }
 void Game::initializeButtons(ALL *allegro) {
+#ifdef DEBUG_INIT
+    cout << "Initialize Buttons" << endl;
+#endif
     modesButtons[REMOVEBUTTON] = new Button(allegro->screenWidth * 0.68, allegro->screenHeight * 0.1037,
                                             "Resources/Buttons/Actions/noMouseRemoveSand.png",
                                             "Resources/Buttons/Actions/mouseRemoveSand.png", allegro);
@@ -1587,7 +1681,6 @@ void Game::initializeButtons(ALL *allegro) {
                                        al_load_bitmap_resized("Resources/Buttons/noMouseEndTurnButton.png", allegro)) *
                                3 / 2, "Resources/Buttons/noMouseEndTurnButton.png",
                                "Resources/Buttons/mouseEndTurnButton.png", allegro);
-    //allegro->volume Buttons
     muteButton = new Button(allegro->screenWidth / 4, al_get_bitmap_height(
             al_load_bitmap_resized("Resources/Buttons/noMouseEndTurnButton.png", allegro)) * 3 / 2,
                             "Resources/Buttons/muteButton.png", "Resources/Buttons/muteButton.png", allegro);
@@ -1652,7 +1745,7 @@ void Game::initializeEquipmentCardButton(ALL *allegro) {
                                          "Resources/Buttons/Peep/mouseOverSelectImage.png", allegro);
     } else { std::cout << "Failed to load Peep Button Select" << endl; }
 }
-//Key Methods
+//! Key Methods
 void Game::keyUp(ALL *allegro) {
     /* Used when the kuy up was pressed, it does what it needs to be done after it happens */
     if (modeEnum != MOVEOTHER) {
@@ -2265,7 +2358,7 @@ void Game::chooseOption(ALL *allegro, Container temp) {
         delete disagreeButton;
     } else { cout << "Could't initialize tempQueue" << endl; }
 }
-//Mouse Methods
+//! Mouse Methods
 void Game::click(ALL *allegro) {
     /* Runs the click depending in which state i'm in */
     //Volume Buttons
@@ -3261,7 +3354,7 @@ void Game::clickEquipmentButtons(ALL *allegro) {
             performEquipmentsAction(TIMETHROTTLE, allegro);
     }
 }
-//Next and Previous Methods
+//! Next and Previous Methods
 void Game::nextEquipCard() {
     Character *tempCharacter;
     if (modeEnum == OFFEREQUIPMENTMODE) tempCharacter = character;

@@ -34,6 +34,7 @@ enum ModeEnum { NORMAL, REMOVESAND, //Normal Use
 class Game {
 public:
 	Game(ALL *allegro, FSMI *gameNetwork);
+    Game(ALL *allegro, Container *info);
 	~Game();
 	bool eventHandler(ALL *allegro);
 	bool receiveHandler(ALL* allegro);
@@ -107,6 +108,8 @@ private:
 	pos mouse;
 	bool redraw;
 	FSMI *gameNetwork;
+	Container info;
+	bool singlePlayer;
 	ModeEnum modeEnum;				//ModeEnum is used to know in wich mode I am... say.. have to move or remove sand
 	int SandMarkersLeft;
 	int sandStormLevel;

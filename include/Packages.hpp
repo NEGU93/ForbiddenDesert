@@ -46,7 +46,7 @@
 
 #define TIMEOUT 5 //5 seconds for timeout.
 
-typedef enum {ARCHEOLOGIST=0x30, CLIMBER, EXPLORER, METEOROLOGIST, NAVIGATOR, WATER_CARRIER} roles;
+enum roles {ARCHEOLOGIST=0x30, CLIMBER, EXPLORER, METEOROLOGIST, NAVIGATOR, WATER_CARRIER};
 enum EquipmentsEnum{DUNEBLAST=0x01, JETPACK, SOLARSHIELD, TERRASCOPE, SECRETWATERRESERVE,TIMETHROTTLE}; 
 
 int myRand(int i);
@@ -112,6 +112,10 @@ public:
 	void addName(char* name);
 	void addFriendName(char* name);
 	void addInfo(Container info);
+
+	void startinfo(roles rol1, roles rol2);
+
+	// Variables
 	unsigned char ID;	//ID de cada uno
 	char Slot1;
 	char Slot2;
@@ -120,9 +124,9 @@ public:
 	char Slot5;
 	char Slot6;
 	char Slot7;
-	char name[SIZEOFNAME];	//Nombre
+	char name[SIZEOFNAME];				//Nombre
 	char friendName[SIZEOFNAME];
-	TilesEnum tiles[CANTOFTILES];	//Arreglo de las cartas
+	TilesEnum tiles[CANTOFTILES];		//Arreglo de las cartas
 	StormCardsEnum storm[CANTOFSTORM];
 	EquipmentsEnum equipment[CANTOFEQUIPMENT];
 //	EquipmentEnum equipment[6];
