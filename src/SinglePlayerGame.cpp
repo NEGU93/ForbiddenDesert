@@ -800,6 +800,9 @@ void SinglePlayerGame::click(ALL *allegro) {
         if (noMuteButton->checkMouse(mouse.x, mouse.y, allegro->volume)) {
             allegro->volume = 0;
             al_stop_sample(&allegro->backgroundMusicID);
+#ifdef DEBUG_GAME
+            cout << "Stopping background music" << endl;
+#endif
         }
     }
     switch (modeEnum) {

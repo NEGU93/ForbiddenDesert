@@ -524,7 +524,7 @@ bool Game::initializeAllegro(ALL *allegro) {
     if (allegro->backgroundMusic != NULL) {
         al_play_sample(allegro->backgroundMusic, allegro->volume / 2, 0.0, 1.0, ALLEGRO_PLAYMODE_LOOP,
                        &allegro->backgroundMusicID);
-    }
+    } else { cerr << "Couldn't load desert.wav sample" << endl; }
     al_play_sample(allegro->startMusic, allegro->volume / 2, 0, 1, ALLEGRO_PLAYMODE_ONCE, NULL);
     //mouse
     if (allegro->mouse = al_load_bitmap_resized("Resources/mouse.png", allegro)) {
