@@ -6,6 +6,8 @@
 
 #include "SinglePlayerGame.hpp"
 
+#define TERRASCOPE_PEEP_TIME 600000
+
 /**
  * Single Player Constructor
  * */
@@ -133,7 +135,7 @@ void SinglePlayerGame::updateScreen(ALL *allegro) {
 #ifdef DEBUG_UPDATE_SCREEN
             cout << "Update Tiles Button" << endl;
 #endif
-            updateTilesButton(allegro); //Don't let the player think he can still move
+            updateTilesButton(allegro); // Don't let the player think he can still move
             //Update Characters
 #ifdef DEBUG_UPDATE_SCREEN
             cout << "Update Characters" << endl;
@@ -239,7 +241,7 @@ void SinglePlayerGame::updateTilesButton(ALL *allegro) {
         }
     } else if (modeEnum == TERRASCOPEMODE) {
         for (int i = 0; i < TILEDECKNUMBER; i++)
-            if (tilesDeck[i]->gettileType() != STORM) {
+            if (tilesDeck[i]->gettileType() != STORM && !tilesDeck[i]->isTurned()) {
                 tilesDeck[i]->updateButton(allegro);
             }
     } else {
@@ -251,8 +253,7 @@ void SinglePlayerGame::updateTilesButton(ALL *allegro) {
             if (ClimberCharacter *climberCharacter = dynamic_cast<ClimberCharacter *>(character2)) { climber = true; }
         } else {
             tempIndex = character->getCardIndex();
-            if ((tilesDeck[tempIndex]->haveSand() ||
-                         !tilesDeck[tempIndex]->isTurned())) { tilesDeck[tempIndex]->updateButton(allegro); }
+            if ((tilesDeck[tempIndex]->haveSand() || !tilesDeck[tempIndex]->isTurned())) { tilesDeck[tempIndex]->updateButton(allegro); }
             if (ClimberCharacter *climberCharacter = dynamic_cast<ClimberCharacter *>(character)) { climber = true; }
         }
         if (tilesDeck[tempIndex]->canIMove(climber)) {
@@ -829,14 +830,14 @@ void SinglePlayerGame::click(ALL *allegro) {
 
 }
 void SinglePlayerGame::clickOnPeepMode(ALL *allegro) {
-/* Click while in peep mode */
+    /* Click while in peep mode */
     if (MeteorologistCharacter *meteorologistCharacter = dynamic_cast<MeteorologistCharacter *>(character)) {
         if (nextButton->checkMouse(mouse.x, mouse.y, allegro->volume)) { nextPeepStormCard(); }
         if (previousButton->checkMouse(mouse.x, mouse.y, allegro->volume)) { previousPeepStormCard(); }
         if (selectPeepCard->checkMouse(mouse.x, mouse.y, allegro->volume)) {
             for (int i = 0; i < peepOffset; i++) {
                 swapStormCards(peepOffset - i - 1, peepOffset - i);
-            } //Move the card to the front by saping with each card
+            } //Move the card to the front by swaping with each card
             std::rotate(stormCardsDeck.begin(), stormCardsDeck.begin() + 1,
                         stormCardsDeck.end());        //Rotate to take it to the bottom.
             //meteorologistCharacter->peep();
@@ -862,7 +863,7 @@ void SinglePlayerGame::clickOnJetPackMode(ALL *allegro) {
 }
 void SinglePlayerGame::clickOnTerrascopeMode(ALL *allegro) {
     for (int i = 0; i < TILEDECKNUMBER; i++) {
-        if (tilesDeck[i]->checkButton(mouse.x, mouse.y, allegro->volume)) {
+        if (tilesDeck[i]->checkButton(mouse.x, mouse.y, allegro->volume) && !tilesDeck[i]->isTurned()) {
             int backup = tilesDeck[i]->getSand();
             tilesDeck[i]->turnTerrascopeTile();
             tilesDeck[i]->updateTile(allegro);
@@ -870,6 +871,7 @@ void SinglePlayerGame::clickOnTerrascopeMode(ALL *allegro) {
             tilesDeck[i]->setSand(backup);
             tilesDeck[i]->setTurned(false);
             modeEnum = NORMAL;
+            usleep(TERRASCOPE_PEEP_TIME);
         }
     }
 }
@@ -1003,8 +1005,7 @@ void SinglePlayerGame::clickOnDefaultMode(ALL *allegro) {
     } else if (ClimberCharacter *climberCharacter = dynamic_cast<ClimberCharacter *>(character)) {
         climberCharacter->clickOnButton(mouse.x, mouse.y, allegro->volume);
     } else if (WaterCarrierCharacter *waterCarrierCharacter = dynamic_cast<WaterCarrierCharacter *>(character)) {
-        if (tilesDeck[character->getCardIndex()]->gettileType() == WATER &&
-            tilesDeck[character->getCardIndex()]->isTurned()) {
+        if (tilesDeck[character->getCardIndex()]->gettileType() == WATER && tilesDeck[character->getCardIndex()]->isTurned()) {
             if (waterCarrierCharacter->checkMouseOverButton(mouse.x, mouse.y, allegro->volume)) {
                 al_play_sample(allegro->clickOnButtonSound, allegro->volume, 0, 1, ALLEGRO_PLAYMODE_ONCE, NULL);
                 waterCarrierCharacter->getWatersFromWell();
