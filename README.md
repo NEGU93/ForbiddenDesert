@@ -14,3 +14,23 @@ Inside `testingAllegro/` folder you can run:
 ```
 gcc hello.c -o hello $(pkg-config allegro-5 allegro_font-5 --libs --cflags)
 ```
+
+## How to Play
+
+The game rules can be found on: [ForbiddenDesert-RULES](https://www.gamewright.com/gamewright/pdfs/Rules/ForbiddenDesertTM-RULES.pdf). The pdf was also downloaded on the main folder of the project.
+
+## Gameplay
+
+Here are some screencaptures of the game itself.
+
+<div style="text-align:center">
+<img src="Resources/gameplay/Screenshot from 2019-01-03 16-17-16.png" alt="Start Menu" width="400"/>
+</div>
+
+<div style="text-align:center">
+<img src="Resources/gameplay/Screenshot from 2019-01-03 16-17-29.png" alt="Start Menu" width="900"/>
+</div>
+
+<div style="text-align:center">
+<img src="Resources/gameplay/Screenshot from 2019-01-03 16-18-20.png" alt="Start Menu" width="900"/>
+</div>
