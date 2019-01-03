@@ -12,8 +12,8 @@
 
 #include <cmath>
 
-#define SCREEN_X 1024
-#define SCREEN_Y 768
+#define SCREEN_X 1600
+#define SCREEN_Y 900
 
 #define MAXRESOLUTION_X 1920
 #define MAXRESOLUTION_Y 1080

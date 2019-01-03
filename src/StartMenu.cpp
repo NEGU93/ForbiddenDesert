@@ -49,10 +49,10 @@ bool StartMenu::click(ALL *allegro) {
 	return false;
 }
 void StartMenu::initializeButtons(ALL *allegro) {
-	singlePlayerButton = new Button(WIDTH * allegro->screenWidth / MAXRESOLUTION_X / 2 - al_get_bitmap_width(al_load_bitmap("Resources/Buttons/singlePlayerSelectedButton.png")) / 4,
+	singlePlayerButton = new Button(WIDTH * allegro->screenWidth / MAXRESOLUTION_X / 2 - al_get_bitmap_width(al_load_bitmap("Resources/Buttons/singlePlayerSelectedButton.png")) / 2,
 	        HEIGHT * allegro->screenHeight / MAXRESOLUTION_Y * 1 / 3,
 	        "Resources/Buttons/singlePlayerButton.png", "Resources/Buttons/singlePlayerSelectedButton.png", allegro);
-	multiPlayerButton = new Button(WIDTH * allegro->screenWidth / MAXRESOLUTION_X / 2 - al_get_bitmap_width(al_load_bitmap("Resources/Buttons/singlePlayerSelectedButton.png")) / 4,
+	multiPlayerButton = new Button(WIDTH * allegro->screenWidth / MAXRESOLUTION_X / 2 - al_get_bitmap_width(al_load_bitmap("Resources/Buttons/singlePlayerSelectedButton.png")) / 2,
 	        HEIGHT * allegro->screenHeight / MAXRESOLUTION_Y * 2 / 3,
 	        "Resources/Buttons/lanButton.png", "Resources/Buttons/lanSelectedButton.png", allegro);
 }
