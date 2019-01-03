@@ -6,6 +6,8 @@
 #include <chrono>
 #include <include/Game.hpp>
 
+#define DRAW_CARD_SLEEP 600000
+
 pos Game::getSpot(int row, int column, ALL *allegro, ALLEGRO_BITMAP *image) {
     /* returns the position (in pixels) according to the row and column.
 	it uses the size of the image to make it flexible to diferent sizes of bitmaps.
@@ -138,7 +140,7 @@ void Game::performStormCardAction(ALL *allegro, StormCardsEnum cardEnum) {
             }
             updateScreen(allegro);
             stormCardsDeck[0]->showImage(allegro);
-            usleep(600);
+            usleep(DRAW_CARD_SLEEP);
         case RIGHT2:
             cout << "Right" << endl;
             i = 0;
@@ -163,7 +165,7 @@ void Game::performStormCardAction(ALL *allegro, StormCardsEnum cardEnum) {
             }
             updateScreen(allegro);
             stormCardsDeck[0]->showImage(allegro);
-            usleep(600);
+            usleep(DRAW_CARD_SLEEP);
         case RIGHT1:
             cout << "Right" << endl;
             i = 0;
@@ -187,7 +189,7 @@ void Game::performStormCardAction(ALL *allegro, StormCardsEnum cardEnum) {
             }
             updateScreen(allegro);
             stormCardsDeck[0]->showImage(allegro);
-            usleep(600);
+            usleep(DRAW_CARD_SLEEP);
             break;
         case UP3:
             cout << "Up" << endl;
@@ -212,7 +214,7 @@ void Game::performStormCardAction(ALL *allegro, StormCardsEnum cardEnum) {
             }
             updateScreen(allegro);
             stormCardsDeck[0]->showImage(allegro);
-            usleep(600);
+            usleep(DRAW_CARD_SLEEP);
         case UP2:
             cout << "Up" << endl;
             i = 0;
@@ -236,7 +238,7 @@ void Game::performStormCardAction(ALL *allegro, StormCardsEnum cardEnum) {
             }
             updateScreen(allegro);
             stormCardsDeck[0]->showImage(allegro);
-            usleep(600);
+            usleep(DRAW_CARD_SLEEP);
         case UP1:
             cout << "Up" << endl;
             i = 0;
@@ -260,7 +262,7 @@ void Game::performStormCardAction(ALL *allegro, StormCardsEnum cardEnum) {
             }
             updateScreen(allegro);
             stormCardsDeck[0]->showImage(allegro);
-            usleep(600);
+            usleep(DRAW_CARD_SLEEP);
             break;
         case LEFT3:
             cout << "Left" << endl;
@@ -285,7 +287,7 @@ void Game::performStormCardAction(ALL *allegro, StormCardsEnum cardEnum) {
             }
             updateScreen(allegro);
             stormCardsDeck[0]->showImage(allegro);
-            usleep(600);
+            usleep(DRAW_CARD_SLEEP);
         case LEFT2:
             cout << "Left" << endl;
             i = 0;
@@ -309,7 +311,7 @@ void Game::performStormCardAction(ALL *allegro, StormCardsEnum cardEnum) {
             }
             updateScreen(allegro);
             stormCardsDeck[0]->showImage(allegro);
-            usleep(600);
+            usleep(DRAW_CARD_SLEEP);
         case LEFT1:
             cout << "Left" << endl;
             i = 0;
@@ -333,7 +335,7 @@ void Game::performStormCardAction(ALL *allegro, StormCardsEnum cardEnum) {
             }
             updateScreen(allegro);
             stormCardsDeck[0]->showImage(allegro);
-            usleep(600);
+            usleep(DRAW_CARD_SLEEP);
             break;
         case DOWN3:
             cout << "Down" << endl;
@@ -358,7 +360,7 @@ void Game::performStormCardAction(ALL *allegro, StormCardsEnum cardEnum) {
             }
             updateScreen(allegro);
             stormCardsDeck[0]->showImage(allegro);
-            usleep(600);
+            usleep(DRAW_CARD_SLEEP);
         case DOWN2:
             cout << "Down" << endl;
             i = 0;
@@ -382,7 +384,7 @@ void Game::performStormCardAction(ALL *allegro, StormCardsEnum cardEnum) {
             }
             updateScreen(allegro);
             stormCardsDeck[0]->showImage(allegro);
-            usleep(600);
+            usleep(DRAW_CARD_SLEEP);
         case DOWN1:
             cout << "Down" << endl;
             i = 0;
@@ -406,7 +408,7 @@ void Game::performStormCardAction(ALL *allegro, StormCardsEnum cardEnum) {
             }
             updateScreen(allegro);
             stormCardsDeck[0]->showImage(allegro);
-            usleep(600);
+            usleep(DRAW_CARD_SLEEP);
             break;
         case SUNBEATSDOWN:
             cout << "Sun Beats Down" << endl;
@@ -429,7 +431,7 @@ void Game::performStormCardAction(ALL *allegro, StormCardsEnum cardEnum) {
                 character2->addWater();
             updateScreen(allegro);
             stormCardsDeck[0]->showImage(allegro);
-            usleep(600);
+            usleep(DRAW_CARD_SLEEP);
             break;
         case STORMUP:
             cout << "Storm Pick Up" << endl;
@@ -437,7 +439,7 @@ void Game::performStormCardAction(ALL *allegro, StormCardsEnum cardEnum) {
             sandStormLevel++;
             updateScreen(allegro);
             stormCardsDeck[0]->showImage(allegro);
-            usleep(600);
+            usleep(DRAW_CARD_SLEEP);
     };
 
     rotate(stormCardsDeck.begin(), stormCardsDeck.begin() + 1, stormCardsDeck.end());
