@@ -1,6 +1,6 @@
 # Specify the minimum version for CMake
 cmake_minimum_required(VERSION 3.1)
-CMAKE_POLICY(SET CMP0072 NEW)
+# CMAKE_POLICY(SET CMP0072 NEW)
 # Project name
 project(ForbiddenDesert)
 
