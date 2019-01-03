@@ -18,7 +18,7 @@
 #define MAXRESOLUTION_X 1920
 #define MAXRESOLUTION_Y 1080
 
-//#define WINDOWED
+#define WINDOWED
 
 typedef struct {
 	int screenWidth;

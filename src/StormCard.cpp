@@ -51,7 +51,7 @@ StormCard::StormCard(StormCardsEnum cardEnum, ALL *allegro) {
 
 	if( this->cardImage)
 		stormCardEnum = cardEnum;
-	else { cout << "Failed to load " << cardEnum << " image" << endl;}
+	else { cerr << "Failed to load " << cardEnum << " image" << endl;}
 }
 void StormCard::showImage(ALL *allegro){
 	al_draw_bitmap(cardImage, allegro->screenWidth * STORMCARD_X, allegro->screenHeight * STORMCARD_Y, 0);

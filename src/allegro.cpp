@@ -41,17 +41,17 @@ bool init_allegro(ALL *allegro) {
 						if (allegro->startMenuDisplay != NULL) {
 							state = true;
 						}
-						else { cout << "Failed to initialize startMenuDisplay" << endl; al_uninstall_keyboard(); }
+						else { cerr << "Failed to initialize startMenuDisplay" << endl; al_uninstall_keyboard(); }
 					}
-					else { cout << "Failed to initialize keyboard" << endl; al_uninstall_mouse(); }
+					else { cerr << "Failed to initialize keyboard" << endl; al_uninstall_mouse(); }
 				}
-				else { cout << "Failed to initialize mouse" << endl; al_shutdown_image_addon(); }
+				else { cerr << "Failed to initialize mouse" << endl; al_shutdown_image_addon(); }
 			}
-			else { cout << "Failed to initialize image addon" << endl; al_shutdown_primitives_addon(); }
+			else { cerr << "Failed to initialize image addon" << endl; al_shutdown_primitives_addon(); }
 		}
-		else { cout << "Failed to initialize primitives addon" << endl; }
+		else { cerr << "Failed to initialize primitives addon" << endl; }
 	}
-	else { cout << "Failed to initialize allegro" << endl; }
+	else { cerr << "Failed to initialize allegro" << endl; }
 	//Timer for polonet
 	if (state) {
 		state = false;
@@ -59,7 +59,7 @@ bool init_allegro(ALL *allegro) {
 			al_set_timer_count(allegro->timeout, 0);
 			state = true;
 		}
-		else { cout << "Failed to initialize timeout" << endl; }
+		else { cerr << "Failed to initialize timeout" << endl; }
 	}
 	//Initialize events
 	if (state) {
@@ -73,7 +73,7 @@ bool init_allegro(ALL *allegro) {
 				state = true;
 			}
 		}
-		else { cout << "Failed to initialize timer" << endl; }
+		else { cerr << "Failed to initialize timer" << endl; }
 	}
 	//Initialize stormMeter image
 	if (state) {
@@ -95,35 +95,35 @@ bool init_allegro(ALL *allegro) {
 																if (allegro->stormMeter[14] = al_load_bitmap_resized("Resources/StormMeter/stormMeter14Image.png", allegro)) {
 																	state = true;
 																}
-																else { cout << "Unable to load stormMeter14Image" << endl; }
+																else { cerr << "Unable to load stormMeter14Image" << endl; }
 															}
-															else { cout << "Unable to load stormMeter13Image" << endl; }
+															else { cerr << "Unable to load stormMeter13Image" << endl; }
 														}
-														else { cout << "Unable to load stormMeter12Image" << endl; }
+														else { cerr << "Unable to load stormMeter12Image" << endl; }
 													}
-													else { cout << "Unable to load stormMeter11Image" << endl; }
+													else { cerr << "Unable to load stormMeter11Image" << endl; }
 												}
-												else { cout << "Unable to load stormMeter10Image" << endl; }
+												else { cerr << "Unable to load stormMeter10Image" << endl; }
 											}
-											else { cout << "Unable to load stormMeter9Image" << endl; }
+											else { cerr << "Unable to load stormMeter9Image" << endl; }
 										}
-										else { cout << "Unable to load stormMeter8Image" << endl; }
+										else { cerr << "Unable to load stormMeter8Image" << endl; }
 									}
-									else { cout << "Unable to load stormMeter7Image" << endl; }
+									else { cerr << "Unable to load stormMeter7Image" << endl; }
 								}
-								else { cout << "Unable to load stormMeter6Image" << endl; }
+								else { cerr << "Unable to load stormMeter6Image" << endl; }
 							}
-							else { cout << "Unable to load stormMeter5Image" << endl; }
+							else { cerr << "Unable to load stormMeter5Image" << endl; }
 						}
-						else { cout << "Unable to load stormMeter4Image" << endl; }
+						else { cerr << "Unable to load stormMeter4Image" << endl; }
 					}
-					else { cout << "Unable to load stormMeter3Image" << endl; }
+					else { cerr << "Unable to load stormMeter3Image" << endl; }
 				}
-				else { cout << "Unable to load stormMeter2Image" << endl; }
+				else { cerr << "Unable to load stormMeter2Image" << endl; }
 			}
-			else { cout << "Unable to load stormMeter1Image" << endl; }
+			else { cerr << "Unable to load stormMeter1Image" << endl; }
 		}
-		else { cout << "Unable to load stormMeterImage" << endl; }
+		else { cerr << "Unable to load stormMeterImage" << endl; }
 	}
 	if (state) {
 		state = false;
@@ -156,41 +156,41 @@ bool init_allegro(ALL *allegro) {
 																			if (allegro->equipmentCards[5] = al_load_bitmap_resized("Resources/Equipment/timeThrottleImage.png", allegro)) {
 																				state = true;
 																			}
-																			else { cout << "Unable to load timeThrottleImage.png" << endl; }
+																			else { cerr << "Unable to load timeThrottleImage.png" << endl; }
 																		}
-																		else { cout << "Unable to load secretWaterReserveImage.png" << endl; }
+																		else { cerr << "Unable to load secretWaterReserveImage.png" << endl; }
 																	}
-																	else { cout << "Unable to load terrascopeImage.png" << endl; }
+																	else { cerr << "Unable to load terrascopeImage.png" << endl; }
 																}
-																else { cout << "Unable to load solarShieldImage.png" << endl; }
+																else { cerr << "Unable to load solarShieldImage.png" << endl; }
 															}
-															else { cout << "Unable to load jetPackImage.png" << endl; }
+															else { cerr << "Unable to load jetPackImage.png" << endl; }
 														}
-														else { cout << "Unable to load duneBlasterImage.png" << endl; }
+														else { cerr << "Unable to load duneBlasterImage.png" << endl; }
 													}
-													else { cout << "Unable to load noTimeThrottleImage.png" << endl; }
+													else { cerr << "Unable to load noTimeThrottleImage.png" << endl; }
 												}
-												else { cout << "Unable to load noTerrascopeImage.png" << endl; }
+												else { cerr << "Unable to load noTerrascopeImage.png" << endl; }
 											}
-											else { cout << "Unable to load noSolarShieldImage.png" << endl; }
+											else { cerr << "Unable to load noSolarShieldImage.png" << endl; }
 										}
-										else { cout << "Unable to load noSecretWaterReserveImage.png" << endl; }
+										else { cerr << "Unable to load noSecretWaterReserveImage.png" << endl; }
 									}
-									else { cout << "Unable to load noJetPackImage.png" << endl; }
+									else { cerr << "Unable to load noJetPackImage.png" << endl; }
 								}
-								else { cout << "Unable to load noDuneBlasterImage.png" << endl; }
+								else { cerr << "Unable to load noDuneBlasterImage.png" << endl; }
 							}
-							else { cout << "Unable to load haveTimeThrottleImage.png" << endl; }
+							else { cerr << "Unable to load haveTimeThrottleImage.png" << endl; }
 						}
-						else { cout << "Unable to load haveTerrascopeImage.png" << endl; }
+						else { cerr << "Unable to load haveTerrascopeImage.png" << endl; }
 					}
-					else { cout << "Unable to load haveSolarShieldImage.png" << endl; }
+					else { cerr << "Unable to load haveSolarShieldImage.png" << endl; }
 				}
-				else { cout << "Unable to load haveSecretWaterReserveImage.png" << endl; }
+				else { cerr << "Unable to load haveSecretWaterReserveImage.png" << endl; }
 			}
-			else { cout << "Unable to load haveJetPackImage.png" << endl; }
+			else { cerr << "Unable to load haveJetPackImage.png" << endl; }
 		}
-		else { cout << "Unable to load haveDuneBlasterImage.png" << endl; }
+		else { cerr << "Unable to load haveDuneBlasterImage.png" << endl; }
 	}
 	//Load Part Images
 	if (state) {
@@ -205,21 +205,21 @@ bool init_allegro(ALL *allegro) {
 									if (allegro->partsImages[7] = al_load_bitmap_resized("Resources/Parts/noSolarCrystalImage.png", allegro)) {
 										state = true;
 									}
-									else { cout << "Failed to load No Solar Crystal Image" << endl; }
+									else { cerr << "Failed to load No Solar Crystal Image" << endl; }
 								}
-								else { cout << "Failed to load no Propeller Image" << endl; }
+								else { cerr << "Failed to load no Propeller Image" << endl; }
 							}
-							else { cout << "Failed to load no NavigationDeckImage" << endl; }
+							else { cerr << "Failed to load no NavigationDeckImage" << endl; }
 						}
-						else { cout << "Failed to load no EngineImage" << endl; }
+						else { cerr << "Failed to load no EngineImage" << endl; }
 					}
-					else { cout << "Failed to load no Solar Crystal Image" << endl; }
+					else { cerr << "Failed to load no Solar Crystal Image" << endl; }
 				}
-				else { cout << "Failed to load Propeller Image" << endl; }
+				else { cerr << "Failed to load Propeller Image" << endl; }
 			}
-			else { cout << "Failed to load NavigationDeckImage" << endl; }
+			else { cerr << "Failed to load NavigationDeckImage" << endl; }
 		}
-		else { cout << "Failed to load EngineImage" << endl; }
+		else { cerr << "Failed to load EngineImage" << endl; }
 	}
 	//Rectangle
 	if (state) {
@@ -232,17 +232,17 @@ bool init_allegro(ALL *allegro) {
 							if (allegro->rectangleImage[5] = al_load_bitmap_resized("Resources/Buttons/AdventurerSpecialsDescription/meteorologistRectangle.png", allegro)) {
 								state = true;
 							}
-							else { cout << "Failed to load Meteorologist Rectangle" << endl; }
+							else { cerr << "Failed to load Meteorologist Rectangle" << endl; }
 						}
-						else { cout << "Failed to load Water Carrier Rectangle" << endl; }
+						else { cerr << "Failed to load Water Carrier Rectangle" << endl; }
 					}
-					else { cout << "Failed to load Navigator Rectangle" << endl; }
+					else { cerr << "Failed to load Navigator Rectangle" << endl; }
 				}
-				else { cout << "Failed to load Explorer Rectangle" << endl; }
+				else { cerr << "Failed to load Explorer Rectangle" << endl; }
 			}
-			else { cout << "Failed to load Climber Rectangle" << endl; }
+			else { cerr << "Failed to load Climber Rectangle" << endl; }
 		}
-		else { cout << "Failed to load Archeologist Rectangle" << endl; }
+		else { cerr << "Failed to load Archeologist Rectangle" << endl; }
 	}
 	//Load Audio
 	if (state) {
@@ -266,34 +266,34 @@ bool init_allegro(ALL *allegro) {
 																		state = true;
 																	}
 																}
-																else { cout << "Failed to load Reject Water Sound" << endl; }
+																else { cerr << "Failed to load Reject Water Sound" << endl; }
 															}
-															else { cout << "Failed to load Reject Equipment Sound" << endl; }
+															else { cerr << "Failed to load Reject Equipment Sound" << endl; }
 														}
-														else { cout << "Failed to load Reject Equipment Sound" << endl; }
+														else { cerr << "Failed to load Reject Equipment Sound" << endl; }
 													}
-													else { cout << "Failed to load blood sound" << endl; }
+													else { cerr << "Failed to load blood sound" << endl; }
 												}
-												else { cout << "Failed to load teleport Sound" << endl; }
+												else { cerr << "Failed to load teleport Sound" << endl; }
 											}
-											else { cout << "Failed to load curiosity Sound" << endl; }
+											else { cerr << "Failed to load curiosity Sound" << endl; }
 										}
-										else { cout << "Failed to load Excavate Sound" << endl; }
+										else { cerr << "Failed to load Excavate Sound" << endl; }
 									}
-									else { cout << "Failed to load Storm Sound sample" << endl; }
+									else { cerr << "Failed to load Storm Sound sample" << endl; }
 								}
-								else { cout << "Failed to load sample water sound" << endl; }
+								else { cerr << "Failed to load sample water sound" << endl; }
 							}
-							else { cout << "Failed to load sample sun beats down" << endl; }
+							else { cerr << "Failed to load sample sun beats down" << endl; }
 						}
-						else { cout << "Failed to load samples" << endl; }
+						else { cerr << "Failed to load samples" << endl; }
 					}
 				}
-				else { cout << "Failed to reserve samples" << endl; }
+				else { cerr << "Failed to reserve samples" << endl; }
 			}
-			else { cout << "Failed to init audio addon" << endl; }
+			else { cerr << "Failed to init audio addon" << endl; }
 		}
-		else { cout << "Failed to install audio" << endl; }
+		else { cerr << "Failed to install audio" << endl; }
 	}
 	//Initialize fonts
 	if (state) {
@@ -305,13 +305,13 @@ bool init_allegro(ALL *allegro) {
 					if (allegro->gameFont = al_load_ttf_font("Resources/Papyrus.ttf", FONTSIZE * allegro->screenHeight / MAXRESOLUTION_Y, 0)) {
 						state = true;
 					}
-					else { cout << "Failed to initialize gameFont" << endl; }
+					else { cerr << "Failed to initialize gameFont" << endl; }
 				}
-				else { cout << "Failed to initialize consola.ttf" << endl; }
+				else { cerr << "Failed to initialize consola.ttf" << endl; }
 			}
-			else { cout << "Failed to initialize Papyrus.ttf" << endl; }
+			else { cerr << "Failed to initialize Papyrus.ttf" << endl; }
 		}
-		else { cout << "Failed to initialize ttf addon" << endl; }
+		else { cerr << "Failed to initialize ttf addon" << endl; }
 	}
 
 	al_flip_display();

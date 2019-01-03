@@ -10,8 +10,7 @@
 /* ------------------- TODO -----------------------
  * TODO: poner numero de carta en peep mode
  * TODO: Priority: request water no anda
- * TODO: play again not working
- * TODO:
+ * TODO: Not windowed mode just stops
  *
  *
 5. Para poder declarar variables arm� constructores por defecto vacios... estar�a bueno borrarlos y ponerle argumentos por defecto (diapositiva 10-Administraci�n de memoria, pagina 8)
@@ -35,7 +34,7 @@ int main() {
     ALL allegroData = {0, 0, 0, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr};
     ALL *allegro = &allegroData;
     if (!init_allegro(allegro)) {
-        cout << "Failed to initialize allegro. Closing Forbidden Desert." << endl;
+        cerr << "Failed to initialize allegro. Closing Forbidden Desert." << endl;
     }
     FSMI *gameNetwork = nullptr;
     bool stillPlaying;
@@ -83,9 +82,9 @@ int main() {
 	cout << "Players chosen. Ready to start game" << endl;
 	Game *game = nullptr;
 	do {
-	    cout << "Play again" << endl;
 		if (game != nullptr) {  // New game?
 			delete game;
+            cout << "Play again" << endl;
 			if(!singlePlayer) { gameNetwork->restart(allegro); }
 		}
 		if (singlePlayer) {

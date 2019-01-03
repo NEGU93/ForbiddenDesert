@@ -14,7 +14,7 @@ Character::Character(int rowSet, int columnSet, Container info, ALL* allegro) {
 	if (gettingCloseSound = al_load_sample("Resources/Sounds/MustBeGettingClose(Boy).wav")) {
 
 	}
-	else { cout << "Failed to load Must be getting close Sound" << endl; }
+	else { cerr << "Failed to load Must be getting close Sound" << endl; }
 	if (image) {
 		if (watersImages[0] = al_load_bitmap_resized("Resources/Water Level/0WaterLevelImage.png", allegro)) {
 			if (watersImages[1] = al_load_bitmap_resized("Resources/Water Level/1WaterLevelImage.png", allegro)) {
@@ -41,17 +41,17 @@ Character::Character(int rowSet, int columnSet, Container info, ALL* allegro) {
 								terrascopeButton = new Button( xoffset + 4 * (al_get_bitmap_width(allegro->noEquipments[4]) + 1), yoffset, "Resources/Equipment/haveTerrascopeImage.png","Resources/Equipment/haveTerrascopeImage.png", allegro);
 								timeThrottleButton = new Button(xoffset + 5 * (al_get_bitmap_width(allegro->noEquipments[4]) + 1), yoffset,"Resources/Equipment/haveTimeThrottleImage.png","Resources/Equipment/haveTimeThrottleImage.png", allegro);
 							}
-							else { cout << "Unable to load Dead Water Level Image" << endl; }
+							else { cerr << "Unable to load Dead Water Level Image" << endl; }
 						}
-						else { cout << "Unable to load 4 water level Image" << endl; }
+						else { cerr << "Unable to load 4 water level Image" << endl; }
 					}
-					else { cout << "Unable to load 3 water level Image" << endl; }
+					else { cerr << "Unable to load 3 water level Image" << endl; }
 				}
-				else { cout << "Unable to load 2 water level Image" << endl; }
+				else { cerr << "Unable to load 2 water level Image" << endl; }
 			}
-			else { cout << "Unable to load 1 water level Image" << endl; }
+			else { cerr << "Unable to load 1 water level Image" << endl; }
 		}
-		else { cout << "Unable to load 0 water level Image" << endl; }
+		else { cerr << "Unable to load 0 water level Image" << endl; }
 	}
 }
 void Character::drinkWater() {
@@ -221,7 +221,9 @@ bool Character::moveRight() {
 }
 bool Character::removeSand() {
 	if (numberOfMoves > 0) {
+#ifdef DEBUG_GAME
 		cout << "Remove Sand" << endl;
+#endif
 		decreseMoves();
 		return true;
 	}
@@ -229,7 +231,9 @@ bool Character::removeSand() {
 }
 bool Character::dig() {
 	if (numberOfMoves > 0) {
+#ifdef DEBUG_GAME
 		cout << "Dig" << endl;
+#endif
 		decreseMoves();
 		return true;
 	}
@@ -237,7 +241,9 @@ bool Character::dig() {
 }
 bool Character::pickUpPart() {
 	if (numberOfMoves > 0) {
+#ifdef DEBUG_GAME
 		cout << "Pick Up Part" << endl;
+#endif
 		decreseMoves();
 		return true;
 	}
@@ -258,7 +264,7 @@ bool Character::setPos(int row, int column) {
 		return true;
 	}
 	else { 
-		cout << "They wanted me to move where I already was" << endl;
+		cerr << "They wanted me to move where I already was" << endl;
 		return false;
 	} //Normally this should never happen so I print for it to be fixed
 }

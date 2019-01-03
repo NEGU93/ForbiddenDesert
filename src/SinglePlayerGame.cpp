@@ -41,7 +41,7 @@ SinglePlayerGame::SinglePlayerGame(ALL *allegro, Container *info_in) {
         playAgain = false;
 
         modeEnum = NORMAL;
-    } else { cout << "Couldn't initialize allegro" << endl; }
+    } else { cerr << "Couldn't initialize allegro" << endl; }
 }
 void SinglePlayerGame::updateScreen(ALL *allegro) {
 #ifdef DEBUG_UPDATE_SCREEN
@@ -445,7 +445,7 @@ void SinglePlayerGame::wannaPlay(ALL *allegro, char ID) {
         delete playAgainButton;
         delete gameOverButton;
         al_destroy_event_queue(tempQueue);
-    } else { cout << "Could not initialize tempQueue" << endl; }
+    } else { cerr << "Could not initialize tempQueue" << endl; }
 }
 bool SinglePlayerGame::lose(ALL *allegro) {
     /* Lose: used to check if the players lose*/
@@ -512,18 +512,24 @@ void SinglePlayerGame::keyUp(ALL *allegro) {
                             if (tilesDeck[character->getCardIndex() - 1]->haveSand()) {
                                 tilesDeck[character->getCardIndex() - 1]->removeSand();
                                 SandMarkersLeft++;
+#ifdef DEBUG_GAME
                                 cout << "Sand Marker ++" << endl;
+#endif
                             }
                         }
                         SandMarkersLeft++;
+#ifdef DEBUG_GAME
                         cout << "Sand Marker ++" << endl;
+#endif
                     }
                 }
             } else if (modeEnum == DUNEBLASTERMODE) {
                 while (tilesDeck[character->getCardIndex() - 1]->haveSand()) {
                     tilesDeck[character->getCardIndex() - 1]->removeSand();
                     SandMarkersLeft++;
+#ifdef DEBUG_GAME
                     cout << "Sand Marker ++" << endl;
+#endif
                 }
             }
         }
@@ -542,12 +548,12 @@ void SinglePlayerGame::keyUp(ALL *allegro) {
                                         character->moveUp(); // TODO: this is not working yet, the other computer never knows if climber has its take with me active
                                     }
                                 }
-                            } else { cout << "Error: no moves left even though I was supposed to have" << endl; }
+                            } else { cerr << "Error: no moves left even though I was supposed to have" << endl; }
                         }
                     }
                 }
             }
-        } else { cout << "Error: Move Other mode without being a navigator character" << endl; }
+        } else { cerr << "Error: Move Other mode without being a navigator character" << endl; }
     }
 }
 void SinglePlayerGame::keyDown(ALL *allegro) {
@@ -576,18 +582,24 @@ void SinglePlayerGame::keyDown(ALL *allegro) {
                             if (tilesDeck[character->getCardIndex() + 1]->haveSand()) {
                                 tilesDeck[character->getCardIndex() + 1]->removeSand();
                                 SandMarkersLeft++;
+#ifdef DEBUG_GAME
                                 cout << "Sand Marker ++" << endl;
+#endif
                             }
                         }
                         SandMarkersLeft++;
+#ifdef DEBUG_GAME
                         cout << "Sand Marker ++" << endl;
+#endif
                     }
                 }
             } else if (modeEnum == DUNEBLASTERMODE) {
                 while (tilesDeck[character->getCardIndex() + 1]->haveSand()) {
                     tilesDeck[character->getCardIndex() + 1]->removeSand();
                     SandMarkersLeft++;
+#ifdef DEBUG_GAME
                     cout << "Sand Marker ++" << endl;
+#endif
                 }
             }
         }
@@ -606,12 +618,12 @@ void SinglePlayerGame::keyDown(ALL *allegro) {
                                         character->moveDown();
                                     }
                                 }
-                            } else { cout << "Error: no moves left even though I was supposed to have" << endl; }
+                            } else { cerr << "Error: no moves left even though I was supposed to have" << endl; }
                         }
                     }
                 }
             }
-        } else { cout << "Error: Move Other mode without being a navigator character" << endl; }
+        } else { cerr << "Error: Move Other mode without being a navigator character" << endl; }
     }
 }
 void SinglePlayerGame::keyRight(ALL *allegro) {
@@ -643,18 +655,24 @@ void SinglePlayerGame::keyRight(ALL *allegro) {
                             if (tilesDeck[character->getCardIndex() + 5]->haveSand()) {
                                 tilesDeck[character->getCardIndex() + 5]->removeSand();
                                 SandMarkersLeft++;
+#ifdef DEBUG_GAME
                                 cout << "Sand Marker ++" << endl;
+#endif
                             }
                         }
                         SandMarkersLeft++;
+#ifdef DEBUG_GAME
                         cout << "Sand Marker ++" << endl;
+#endif
                     }
                 }
             } else if (modeEnum == DUNEBLASTERMODE) {
                 while (tilesDeck[character->getCardIndex() + 5]->haveSand()) {
                     tilesDeck[character->getCardIndex() + 5]->removeSand();
                     SandMarkersLeft++;
+#ifdef DEBUG_GAME
                     cout << "Sand Marker ++" << endl;
+#endif
                 }
             }
         }
@@ -673,12 +691,12 @@ void SinglePlayerGame::keyRight(ALL *allegro) {
                                         character->moveRight();
                                     }
                                 }
-                            } else { cout << "Error: no moves left even though I was supposed to have" << endl; }
+                            } else { cerr << "Error: no moves left even though I was supposed to have" << endl; }
                         }
                     }
                 }
             }
-        } else { cout << "Error: Move Other mode without being a navigator character" << endl; }
+        } else { cerr << "Error: Move Other mode without being a navigator character" << endl; }
     }
 }
 void SinglePlayerGame::keyLeft(ALL *allegro) {
@@ -710,18 +728,24 @@ void SinglePlayerGame::keyLeft(ALL *allegro) {
                             if (tilesDeck[character->getCardIndex() - 5]->haveSand()) {
                                 tilesDeck[character->getCardIndex() - 5]->removeSand();
                                 SandMarkersLeft++;
+#ifdef DEBUG_GAME
                                 cout << "Sand Marker ++" << endl;
+#endif
                             }
                         }
                         SandMarkersLeft++;
+#ifdef DEBUG_GAME
                         cout << "Sand Marker ++" << endl;
+#endif
                     }
                 }
             } else if (modeEnum == DUNEBLASTERMODE) {
                 while (tilesDeck[character->getCardIndex() - 5]->haveSand()) {
                     tilesDeck[character->getCardIndex() - 5]->removeSand();
                     SandMarkersLeft++;
+#ifdef DEBUG_GAME
                     cout << "Sand Marker ++" << endl;
+#endif
                 }
             }
         }
@@ -745,7 +769,7 @@ void SinglePlayerGame::keyLeft(ALL *allegro) {
                     }
                 }
             }
-        } else { cout << "Error: Move Other mode without being a navigator character" << endl; }
+        } else { cerr << "Error: Move Other mode without being a navigator character" << endl; }
     }
 }
 void SinglePlayerGame::keyE(ALL *allegro) {
@@ -775,12 +799,16 @@ void SinglePlayerGame::keyR(ALL *allegro) {
                     if (tilesDeck[character->getCardIndex()]->haveSand()) {
                         tilesDeck[character->getCardIndex()]->removeSand();
                         SandMarkersLeft++;
+#ifdef DEBUG_GAME
                         cout << "Sand Marker ++" << endl;
+#endif
                     }
                 }
                 tilesDeck[character->getCardIndex()]->removeSand();
                 SandMarkersLeft++;
+#ifdef DEBUG_GAME
                 cout << "Sand Marker ++" << endl;
+#endif
             }
         }
     }
@@ -847,7 +875,7 @@ void SinglePlayerGame::clickOnPeepMode(ALL *allegro) {
             modeEnum = NORMAL;
             resetPeepOffset();
         }
-    } else { cout << "Enter in 'click on peep mode' without being an meteorologist" << endl; }
+    } else { cerr << "Enter in 'click on peep mode' without being an meteorologist" << endl; }
 }
 void SinglePlayerGame::clickOnJetPackMode(ALL *allegro) {
     for (int i = 0; i < TILEDECKNUMBER; i++) {
@@ -998,7 +1026,9 @@ void SinglePlayerGame::clickOnDefaultMode(ALL *allegro) {
     if (MeteorologistCharacter *meteorologistCharacter = dynamic_cast<MeteorologistCharacter *>(character)) {
         if (meteorologistCharacter->checkMouseOverButton(mouse.x, mouse.y, allegro->volume)) {
             al_play_sample(allegro->clickOnButtonSound, allegro->volume, 0, 1, ALLEGRO_PLAYMODE_ONCE, NULL);
+#ifdef DEBUG_GAME
             cout << "PEEP" << endl;
+#endif
             if (meteorologistCharacter->peep()) {
                 modeEnum = PEEPMODE;
                 peepOffset = 0;
@@ -1017,7 +1047,9 @@ void SinglePlayerGame::clickOnDefaultMode(ALL *allegro) {
         }
     } else if (NavigatorCharacter *navigatorCharacter = dynamic_cast<NavigatorCharacter *>(character)) {
         if (navigatorCharacter->checkMouseOverButton(mouse.x, mouse.y, modeEnum == MOVEOTHER, allegro->volume)) {
+#ifdef DEBUG_GAME
             cout << "Click on special navigator button" << endl;
+#endif
             al_play_sample(allegro->clickOnButtonSound, allegro->volume, 0, 1, ALLEGRO_PLAYMODE_ONCE, NULL);
             if (modeEnum == MOVEOTHER) {
                 modeEnum = NORMAL;
@@ -1044,18 +1076,24 @@ void SinglePlayerGame::clickTilesButtons(ALL *allegro) {
                     while (tilesDeck[character->getCardIndex()]->haveSand()) {
                         tilesDeck[character->getCardIndex()]->removeSand();
                         SandMarkersLeft++;
+#ifdef DEBUG_GAME
                         cout << "Sand Marker ++" << endl;
+#endif
                     }
                 } else if (tilesDeck[character->getCardIndex()]->haveSand()) {
                     if (character->removeSand()) {
                         tilesDeck[character->getCardIndex()]->removeSand();
                         SandMarkersLeft++;
+#ifdef DEBUG_GAME
                         cout << "Sand Marker ++" << endl;
+#endif
                         if (ArcheologistCharacter *archeologistCharacter = dynamic_cast<ArcheologistCharacter *>(character)) {
                             if (tilesDeck[character->getCardIndex()]->haveSand()) {
                                 tilesDeck[character->getCardIndex()]->removeSand();
                                 SandMarkersLeft++;
+#ifdef DEBUG_GAME
                                 cout << "Sand Marker ++" << endl;
+#endif
                             }
                         }
                     }
@@ -1116,7 +1154,7 @@ void SinglePlayerGame::clickTilesButtons(ALL *allegro) {
             bool climber = false;
             if (ClimberCharacter *explorerCharacter = dynamic_cast<ClimberCharacter *>(character)) {
                 climber = true;
-                cout << "Error: character is both explorer and climber" << endl;
+                cerr << "Error: character is both explorer and climber" << endl;
             }
             if (character->getCardIndex() > 5 && character->getCardIndex() % 5 != 0) {
                 if (tilesDeck[character->getCardIndex() - 6]->checkButton(mouse.x, mouse.y, allegro->volume)) {
@@ -1130,14 +1168,18 @@ void SinglePlayerGame::clickTilesButtons(ALL *allegro) {
                             if (character->removeSand()) { //this time there is no need to check if its an archeologist because its an explorer
                                 tilesDeck[character->getCardIndex() - 6]->removeSand();
                                 SandMarkersLeft++;
+#ifdef DEBUG_GAME
                                 cout << "Sand Marker ++" << endl;
+#endif
                             }
                         }
                     } else if (modeEnum == DUNEBLASTERMODE) {
                         while (tilesDeck[character->getCardIndex() - 6]->haveSand()) {
                             tilesDeck[character->getCardIndex() - 6]->removeSand();
                             SandMarkersLeft++;
+#ifdef DEBUG_GAME
                             cout << "Sand Marker ++" << endl;
+#endif
                         }
                     }
                     modeEnum = NORMAL;
@@ -1154,7 +1196,9 @@ void SinglePlayerGame::clickTilesButtons(ALL *allegro) {
                             if (character->removeSand()) {
                                 tilesDeck[character->getCardIndex() - 4]->removeSand();
                                 SandMarkersLeft++;
+#ifdef DEBUG_GAME
                                 cout << "Sand Marker ++" << endl;
+#endif
                             }
                         }
 
@@ -1162,7 +1206,9 @@ void SinglePlayerGame::clickTilesButtons(ALL *allegro) {
                         while (tilesDeck[character->getCardIndex() - 4]->haveSand()) {
                             tilesDeck[character->getCardIndex() - 4]->removeSand();
                             SandMarkersLeft++;
+#ifdef DEBUG_GAME
                             cout << "Sand Marker ++" << endl;
+#endif
                         }
                     }
                     modeEnum = NORMAL;
@@ -1179,14 +1225,18 @@ void SinglePlayerGame::clickTilesButtons(ALL *allegro) {
                             if (character->removeSand()) {
                                 tilesDeck[character->getCardIndex() + 4]->removeSand();
                                 SandMarkersLeft++;
+#ifdef DEBUG_GAME
                                 cout << "Sand Marker ++" << endl;
+#endif
                             }
                         }
                     } else if (modeEnum == DUNEBLASTERMODE) {
                         while (tilesDeck[character->getCardIndex() + 4]->haveSand()) {
                             tilesDeck[character->getCardIndex() + 4]->removeSand();
                             SandMarkersLeft++;
+#ifdef DEBUG_GAME
                             cout << "Sand Marker ++" << endl;
+#endif
                         }
                     }
                     modeEnum = NORMAL;
@@ -1203,14 +1253,18 @@ void SinglePlayerGame::clickTilesButtons(ALL *allegro) {
                             if (character->removeSand()) {
                                 tilesDeck[character->getCardIndex() + 6]->removeSand();
                                 SandMarkersLeft++;
-                                cout << "Sand Marker ++" << endl;;
+#ifdef DEBUG_GAME
+                                cout << "Sand Marker ++" << endl;
+#endif
                             }
                         }
                     } else if (modeEnum == DUNEBLASTERMODE) {
                         while (tilesDeck[character->getCardIndex() + 6]->haveSand()) {
                             tilesDeck[character->getCardIndex() + 6]->removeSand();
                             SandMarkersLeft++;
+#ifdef DEBUG_GAME
                             cout << "Sand Marker ++" << endl;
+#endif
                         }
                     }
                     modeEnum = NORMAL;
@@ -1261,7 +1315,7 @@ void SinglePlayerGame::clickTilesButtons(ALL *allegro) {
                 bool climber = false;
                 if (ClimberCharacter *explorerCharacter = dynamic_cast<ClimberCharacter *>(character2)) {
                     climber = true;
-                    cout << "Error: character is both explorer and climber" << endl;
+                    cerr << "Error: character is both explorer and climber" << endl;
                 }
                 if (character2->getCardIndex() > 5 && character2->getCardIndex() % 5 != 0) {
                     if (tilesDeck[character2->getCardIndex() - 6]->checkButton(mouse.x, mouse.y, allegro->volume)) {
@@ -1311,7 +1365,9 @@ void SinglePlayerGame::clickTilesButtons(ALL *allegro) {
 }
 void SinglePlayerGame::clickModesButtons(ALL *allegro) {
     if (modesButtons[REMOVEBUTTON]->checkMouse(mouse.x, mouse.y, allegro->volume)) {
+#ifdef DEBUG_GAME
         cout << "Remove Sand Button Clicked" << endl;
+#endif
         al_play_sample(allegro->clickOnButtonSound, allegro->volume, 0, 1, ALLEGRO_PLAYMODE_ONCE, NULL);
         if (modeEnum == REMOVESAND) {
             if (tilesDeck[character->getCardIndex()]->haveSand()) {
@@ -1321,28 +1377,38 @@ void SinglePlayerGame::clickModesButtons(ALL *allegro) {
                         if (tilesDeck[character->getCardIndex()]->haveSand()) {
                             tilesDeck[character->getCardIndex()]->removeSand();
                             SandMarkersLeft++;
+#ifdef DEBUG_GAME
                             cout << "Sand Marker ++" << endl;
+#endif
                         }
                     }
                     SandMarkersLeft++;
+#ifdef DEBUG_GAME
                     cout << "Sand Marker ++" << endl;
+#endif
                 }
             }
             modeEnum = NORMAL;
         } else { modeEnum = REMOVESAND; }
     } else if (modesButtons[EXCAVATEBUTTON]->checkMouse(mouse.x, mouse.y,
                                                         allegro->volume)) {    //I use else if because it will take less time for the computer to check the buttons
+#ifdef DEBUG_GAME
         cout << "Excavate Button Clicked" << endl;
+#endif
         al_play_sample(allegro->clickOnButtonSound, allegro->volume, 0, 1, ALLEGRO_PLAYMODE_ONCE, NULL);
         keyE(allegro);
         modeEnum = NORMAL;
     } else if (modesButtons[PICKUPBUTTON]->checkMouse(mouse.x, mouse.y, allegro->volume)) {
+#ifdef DEBUG_GAME
         cout << "Pick Up Part Button Clicked" << endl;
+#endif
         al_play_sample(allegro->clickOnButtonSound, allegro->volume, 0, 1, ALLEGRO_PLAYMODE_ONCE, NULL);
         keyP(allegro);
         modeEnum = NORMAL;
     } else if (modesButtons[OFFERWBUTTON]->checkMouse(mouse.x, mouse.y, allegro->volume)) {
+#ifdef DEBUG_GAME
         cout << "Offer Water Button Clicked" << endl;
+#endif
         al_play_sample(allegro->clickOnButtonSound, allegro->volume, 0, 1, ALLEGRO_PLAYMODE_ONCE, NULL);
         if (WaterCarrierCharacter *waterCarrierCharacter = dynamic_cast<WaterCarrierCharacter *>(character)) {
             if (character->getRow() == character2->getRow()) {
@@ -1363,7 +1429,9 @@ void SinglePlayerGame::clickModesButtons(ALL *allegro) {
                 0) { modeEnum = OFFERWATERMODE; }
         }
     } else if (modesButtons[OFFEREBUTTON]->checkMouse(mouse.x, mouse.y, allegro->volume)) {
+#ifdef DEBUG_GAME
         cout << "Offer Equipment Button Clicked" << endl;
+#endif
         al_play_sample(allegro->clickOnButtonSound, allegro->volume, 0, 1, ALLEGRO_PLAYMODE_ONCE, NULL);
         //if the player does not have any equipment...
         if (character->getCardIndex() == character2->getCardIndex()) {
@@ -1581,25 +1649,33 @@ void SinglePlayerGame::drawStormCards(ALL *allegro) {
     if (sandStormLevel < 6) {
         if (discount < 3) {
             for (int i = 0; i < 3 - discount; i++) {
+#ifdef DEBUG_GAME
                 cout << "Pick Up One Storm Card" << endl;
+#endif
                 this->performStormCardAction(allegro, stormCardsDeck[0]->getStormCardType());
             }
         }
     } else if (sandStormLevel >= 6 && sandStormLevel < 10) {
         if (discount != 4) {
             for (int i = 0; i < 4 - discount; i++) {
+#ifdef DEBUG_GAME
                 cout << "Pick Up One Storm Card" << endl;
+#endif
                 this->performStormCardAction(allegro, stormCardsDeck[0]->getStormCardType());
             }
         }
     } else if (sandStormLevel >= 10 && sandStormLevel < 13) {
         for (int i = 0; i < 5 - discount; i++) {
+#ifdef DEBUG_GAME
             cout << "Pick Up One Storm Card" << endl;
+#endif
             this->performStormCardAction(allegro, stormCardsDeck[0]->getStormCardType());
         }
     } else if (sandStormLevel >= 13 && sandStormLevel < 15) {
         for (int i = 0; i < 6 - discount; i++) {
+#ifdef DEBUG_GAME
             cout << "Pick Up One Storm Card" << endl;
+#endif
             this->performStormCardAction(allegro, stormCardsDeck[0]->getStormCardType());
         }
     }
@@ -1732,7 +1808,7 @@ bool SinglePlayerGame::eventHandler(ALL *allegro) {
                 character2->resetNumberOfMoves();
                 navigatorCharacter->decreseMoves();
             }
-        } else { cout << "Error: was in moveother mode without being a Navigator" << endl; }
+        } else { cerr << "Error: was in moveother mode without being a Navigator" << endl; }
     }
     //checks if win or lose
     if (redraw && al_is_event_queue_empty(allegro->events_queue)) {

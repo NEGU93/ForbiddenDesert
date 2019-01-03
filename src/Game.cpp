@@ -118,7 +118,9 @@ void Game::performStormCardAction(ALL *allegro, StormCardsEnum cardEnum) {
     int i;
     switch (cardEnum) {
         case RIGHT3:
+#ifdef DEBUG_GAME
             cout << "Right" << endl;
+#endif
             i = 0;
             while (tilesDeck[i]->gettileType() != STORM) { i++; }
             if (i < 20) {
@@ -142,7 +144,9 @@ void Game::performStormCardAction(ALL *allegro, StormCardsEnum cardEnum) {
             stormCardsDeck[0]->showImage(allegro);
             usleep(DRAW_CARD_SLEEP);
         case RIGHT2:
+#ifdef DEBUG_GAME
             cout << "Right" << endl;
+#endif
             i = 0;
             while (tilesDeck[i]->gettileType() != STORM) { i++; }
             if (i < 20) {
@@ -167,7 +171,9 @@ void Game::performStormCardAction(ALL *allegro, StormCardsEnum cardEnum) {
             stormCardsDeck[0]->showImage(allegro);
             usleep(DRAW_CARD_SLEEP);
         case RIGHT1:
+#ifdef DEBUG_GAME
             cout << "Right" << endl;
+#endif
             i = 0;
             while (tilesDeck[i]->gettileType() != STORM) { i++; }
             if (i < 20) {
@@ -192,7 +198,9 @@ void Game::performStormCardAction(ALL *allegro, StormCardsEnum cardEnum) {
             usleep(DRAW_CARD_SLEEP);
             break;
         case UP3:
+#ifdef DEBUG_GAME
             cout << "Up" << endl;
+#endif
             i = 0;
             while (tilesDeck[i]->gettileType() != STORM) { i++; }
             if (i % 5 != 0) {
@@ -216,7 +224,9 @@ void Game::performStormCardAction(ALL *allegro, StormCardsEnum cardEnum) {
             stormCardsDeck[0]->showImage(allegro);
             usleep(DRAW_CARD_SLEEP);
         case UP2:
+#ifdef DEBUG_GAME
             cout << "Up" << endl;
+#endif
             i = 0;
             while (tilesDeck[i]->gettileType() != STORM) { i++; }
             if (i % 5 != 0) {
@@ -240,7 +250,9 @@ void Game::performStormCardAction(ALL *allegro, StormCardsEnum cardEnum) {
             stormCardsDeck[0]->showImage(allegro);
             usleep(DRAW_CARD_SLEEP);
         case UP1:
+#ifdef DEBUG_GAME
             cout << "Up" << endl;
+#endif
             i = 0;
             while (tilesDeck[i]->gettileType() != STORM) { i++; }        //Search for the storm
             if (i % 5 != 0) {
@@ -265,7 +277,9 @@ void Game::performStormCardAction(ALL *allegro, StormCardsEnum cardEnum) {
             usleep(DRAW_CARD_SLEEP);
             break;
         case LEFT3:
+#ifdef DEBUG_GAME
             cout << "Left" << endl;
+#endif
             i = 0;
             while (tilesDeck[i]->gettileType() != STORM) { i++; }
             if (i > 4) {
@@ -289,7 +303,9 @@ void Game::performStormCardAction(ALL *allegro, StormCardsEnum cardEnum) {
             stormCardsDeck[0]->showImage(allegro);
             usleep(DRAW_CARD_SLEEP);
         case LEFT2:
+#ifdef DEBUG_GAME
             cout << "Left" << endl;
+#endif
             i = 0;
             while (tilesDeck[i]->gettileType() != STORM) { i++; }
             if (i > 4) {
@@ -313,7 +329,9 @@ void Game::performStormCardAction(ALL *allegro, StormCardsEnum cardEnum) {
             stormCardsDeck[0]->showImage(allegro);
             usleep(DRAW_CARD_SLEEP);
         case LEFT1:
+#ifdef DEBUG_GAME
             cout << "Left" << endl;
+#endif
             i = 0;
             while (tilesDeck[i]->gettileType() != STORM) { i++; }
             if (i > 4) {
@@ -338,7 +356,9 @@ void Game::performStormCardAction(ALL *allegro, StormCardsEnum cardEnum) {
             usleep(DRAW_CARD_SLEEP);
             break;
         case DOWN3:
+#ifdef DEBUG_GAME
             cout << "Down" << endl;
+#endif
             i = 0;
             while (tilesDeck[i]->gettileType() != STORM) { i++; }
             if (i % 5 < 4) {
@@ -362,7 +382,9 @@ void Game::performStormCardAction(ALL *allegro, StormCardsEnum cardEnum) {
             stormCardsDeck[0]->showImage(allegro);
             usleep(DRAW_CARD_SLEEP);
         case DOWN2:
+#ifdef DEBUG_GAME
             cout << "Down" << endl;
+#endif
             i = 0;
             while (tilesDeck[i]->gettileType() != STORM) { i++; }
             if (i % 5 < 4) {
@@ -386,7 +408,9 @@ void Game::performStormCardAction(ALL *allegro, StormCardsEnum cardEnum) {
             stormCardsDeck[0]->showImage(allegro);
             usleep(DRAW_CARD_SLEEP);
         case DOWN1:
+#ifdef DEBUG_GAME
             cout << "Down" << endl;
+#endif
             i = 0;
             while (tilesDeck[i]->gettileType() != STORM) { i++; }
             if (i % 5 < 4) {
@@ -411,7 +435,9 @@ void Game::performStormCardAction(ALL *allegro, StormCardsEnum cardEnum) {
             usleep(DRAW_CARD_SLEEP);
             break;
         case SUNBEATSDOWN:
+#ifdef DEBUG_GAME
             cout << "Sun Beats Down" << endl;
+#endif
             al_play_sample(allegro->sunBeatsDownSound, allegro->volume, 0, 1, ALLEGRO_PLAYMODE_ONCE, NULL);
             character->drinkWater();
             character2->drinkWater();
@@ -434,7 +460,9 @@ void Game::performStormCardAction(ALL *allegro, StormCardsEnum cardEnum) {
             usleep(DRAW_CARD_SLEEP);
             break;
         case STORMUP:
+#ifdef DEBUG_GAME
             cout << "Storm Pick Up" << endl;
+#endif
             al_play_sample(allegro->stormSound, allegro->volume, 0, 1, ALLEGRO_PLAYMODE_ONCE, NULL);
             sandStormLevel++;
             updateScreen(allegro);
@@ -504,7 +532,7 @@ bool Game::initializeAllegro(ALL *allegro) {
             //if (allegro->startMenuDisplay != NULL) { al_destroy_display(allegro->startMenuDisplay); } //Just in case
             al_register_event_source(allegro->events_queue, al_get_display_event_source(allegro->display));
             state = true;
-        } else { cout << "Failed to create Display" << endl; }
+        } else { cerr << "Failed to create Display" << endl; }
     }
 #endif
     //Load Images
@@ -514,8 +542,8 @@ bool Game::initializeAllegro(ALL *allegro) {
         if (allegro->fondo = al_load_bitmap_resized("Resources/PlayingBack.jpg", allegro)) {
             if (allegro->mouse = al_load_bitmap_resized("Resources/mouse.png", allegro)) {
                 state = true;
-            } else { cout << "Failed to load mouse.png" << endl; }
-        } else { cout << "Failed to load scenario.png" << endl; }
+            } else { cerr << "Failed to load mouse.png" << endl; }
+        } else { cerr << "Failed to load scenario.png" << endl; }
     }
 
     //Audio
@@ -650,7 +678,7 @@ void Game::initializeButtons(ALL *allegro) {
         nextButton = new Button(allegro->screenWidth / 2 + 300 - al_get_bitmap_width(tempArrowImage),
                                 allegro->screenHeight / 2, "Resources/Buttons/Peep/nextPeepButton.png",
                                 "Resources/Buttons/Peep/nextPeepButton.png", allegro);
-    } else { std::cout << "Failed to arrow image" << endl; }
+    } else { std::cerr << "Failed to arrow image" << endl; }
     initializeWaterButtons(allegro);
     initializeEquipmentCardButton(allegro);
     if (MeteorologistCharacter *meteorologistCharacter = dynamic_cast<MeteorologistCharacter *>(character)) {
@@ -681,7 +709,7 @@ void Game::initializeWaterButtons(ALL *allegro) {
                                      watersButton[3]->getInitialPos().y + 10 + al_get_bitmap_height(offsetImage),
                                      "Resources/Buttons/Waters/5watersButtonImage.png",
                                      "Resources/Buttons/Waters/5watersButtonSelectedImage.png", allegro);
-    } else { cout << "Couldn't load offset image" << endl; }
+    } else { cerr << "Couldn't load offset image" << endl; }
 }
 void Game::initializePeepButtons(ALL *allegro) {
     if (ALLEGRO_BITMAP *tempButtonImage = al_load_bitmap_resized("Resources/Buttons/Peep/putToBottomPeepImage.png",
@@ -690,7 +718,7 @@ void Game::initializePeepButtons(ALL *allegro) {
         selectPeepCard = new Button((allegro->screenWidth - al_get_bitmap_width(tempButtonImage)) / 2,
                                     allegro->screenHeight / 2 + 300, "Resources/Buttons/Peep/putToBottomPeepImage.png",
                                     "Resources/Buttons/Peep/putToBottomPeepImage.png", allegro);
-    } else { std::cout << "Failed to load Peep Button Select" << endl; }
+    } else { std::cerr << "Failed to load Peep Button Select" << endl; }
 }
 void Game::initializeEquipmentCardButton(ALL *allegro) {
     if (ALLEGRO_BITMAP *tempButtonImage = al_load_bitmap_resized("Resources/Buttons/Peep/SelectImage.png", allegro)) {
@@ -698,7 +726,7 @@ void Game::initializeEquipmentCardButton(ALL *allegro) {
         selectEquipmentCard = new Button((allegro->screenWidth - al_get_bitmap_width(tempButtonImage)) / 2,
                                          allegro->screenHeight / 2 + 300, "Resources/Buttons/Peep/SelectImage.png",
                                          "Resources/Buttons/Peep/mouseOverSelectImage.png", allegro);
-    } else { std::cout << "Failed to load Peep Button Select" << endl; }
+    } else { std::cerr << "Failed to load Peep Button Select" << endl; }
 }
 //! Key Methods
 void Game::keyEscape() {
@@ -719,7 +747,7 @@ void Game::keyEscape() {
                     character2->resetNumberOfMoves();
                     navigatorCharacter->decreseMoves();
                 }
-            } else { cout << "Error: move other not being a Navigator" << endl; }
+            } else { cerr << "Error: move other not being a Navigator" << endl; }
     }
     modeEnum = NORMAL;
 }
@@ -785,37 +813,49 @@ void Game::checkMouse(ALL *allegro) {
 }
 void Game::clickEquipmentButtons(ALL *allegro) {
     if (character->checkButton(DUNEBLAST, mouse.x, mouse.y, allegro->volume)) {
+#ifdef DEBUG_GAME
         cout << " Secret Dune Blaster Button Clicked" << endl;
+#endif
         al_play_sample(allegro->clickOnButtonSound, allegro->volume, 0, 1, ALLEGRO_PLAYMODE_ONCE, NULL);
         if (character->haveDuneBlaster())
             performEquipmentsAction(DUNEBLAST, allegro);
     }
     if (character->checkButton(SECRETWATERRESERVE, mouse.x, mouse.y, allegro->volume)) {
+#ifdef DEBUG_GAME
         cout << " Secret Water Reserve Button Clicked" << endl;
+#endif
         al_play_sample(allegro->clickOnButtonSound, allegro->volume, 0, 1, ALLEGRO_PLAYMODE_ONCE, NULL);
         if (character->haveWaterReserve())
             performEquipmentsAction(SECRETWATERRESERVE, allegro);
     }
     if (character->checkButton(JETPACK, mouse.x, mouse.y, allegro->volume)) {
+#ifdef DEBUG_GAME
         cout << " Secret JetPack Button Clicked" << endl;
+#endif
         al_play_sample(allegro->clickOnButtonSound, allegro->volume, 0, 1, ALLEGRO_PLAYMODE_ONCE, NULL);
         if (character->haveJetPack())
             performEquipmentsAction(JETPACK, allegro);
     }
     if (character->checkButton(SOLARSHIELD, mouse.x, mouse.y, allegro->volume)) {
+#ifdef DEBUG_GAME
         cout << "Solar Shield Button Clicked" << endl;
+#endif
         al_play_sample(allegro->clickOnButtonSound, allegro->volume, 0, 1, ALLEGRO_PLAYMODE_ONCE, NULL);
         if (character->haveSolarShield())
             performEquipmentsAction(SOLARSHIELD, allegro);
     }
     if (character->checkButton(TERRASCOPE, mouse.x, mouse.y, allegro->volume)) {
+#ifdef DEBUG_GAME
         cout << "Terrascope Button clicked" << endl;
+#endif
         al_play_sample(allegro->clickOnButtonSound, allegro->volume, 0, 1, ALLEGRO_PLAYMODE_ONCE, NULL);
         if (character->haveTerrascope())
             performEquipmentsAction(TERRASCOPE, allegro);
     }
     if (character->checkButton(TIMETHROTTLE, mouse.x, mouse.y, allegro->volume)) {
+#ifdef DEBUG_GAME
         cout << "Time Throttle Button Clicked" << endl;
+#endif
         al_play_sample(allegro->clickOnButtonSound, allegro->volume, 0, 1, ALLEGRO_PLAYMODE_ONCE, NULL);
         if (character->haveTimeThrottle())
             performEquipmentsAction(TIMETHROTTLE, allegro);

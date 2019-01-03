@@ -22,7 +22,7 @@
 #include <algorithm>		//Used to shuffle the array of tiles
 #include <array>
 
-#define DEBUG_GAME
+//#define DEBUG_GAME
 //#define DEBUG_INIT
 //#define DEBUG_UPDATE_SCREEN
 
