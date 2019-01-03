@@ -61,7 +61,7 @@ public:
     int peepOffset{};
     EquipmentsEnum equipOffset;
     int firstTimeUpdateScreenChooseEquipment{};		//ChooseEquipment Counter
-    int firstTimeUpdateScreenPeep{};					//Peep Counter
+    int firstTimeUpdateScreenPeep{};				//Peep Counter
     // Character Variables
     bool playAgain{};
     bool gameOver{};

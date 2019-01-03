@@ -49,12 +49,12 @@ bool StartMenu::click(ALL *allegro) {
 	return false;
 }
 void StartMenu::initializeButtons(ALL *allegro) {
-	singlePlayerButton = new Button(WIDTH * allegro->screenWidth / MAXRESOLUTION_X / 2 - al_get_bitmap_width(al_load_bitmap("Resources/Buttons/muteButton.png")) /2,
+	singlePlayerButton = new Button(WIDTH * allegro->screenWidth / MAXRESOLUTION_X / 2 - al_get_bitmap_width(al_load_bitmap("Resources/Buttons/singlePlayerSelectedButton.png")) / 4,
 	        HEIGHT * allegro->screenHeight / MAXRESOLUTION_Y * 1 / 3,
-	        "Resources/Buttons/muteButton.png", "Resources/Buttons/muteButton.png", allegro);
-	multiPlayerButton = new Button(WIDTH * allegro->screenWidth / MAXRESOLUTION_X / 2 - al_get_bitmap_width(al_load_bitmap("Resources/Buttons/muteButton.png")) / 2,
+	        "Resources/Buttons/singlePlayerButton.png", "Resources/Buttons/singlePlayerSelectedButton.png", allegro);
+	multiPlayerButton = new Button(WIDTH * allegro->screenWidth / MAXRESOLUTION_X / 2 - al_get_bitmap_width(al_load_bitmap("Resources/Buttons/singlePlayerSelectedButton.png")) / 4,
 	        HEIGHT * allegro->screenHeight / MAXRESOLUTION_Y * 2 / 3,
-	        "Resources/Buttons/noMuteButton.png", "Resources/Buttons/noMuteButton.png", allegro);
+	        "Resources/Buttons/lanButton.png", "Resources/Buttons/lanSelectedButton.png", allegro);
 }
 void StartMenu::checkMouse(ALL *allegro) {
 	singlePlayerButton->checkMouse(mouse.x, mouse.y, allegro->volume);
