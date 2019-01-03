@@ -625,9 +625,9 @@ void SinglePlayerGame::keyRight(ALL *allegro) {
                 if (tilesDeck[character->getCardIndex() + 5]->canIMove(climber)) {
                     if (tilesDeck[character->getCardIndex()]->canIMove(climber)) {
                         if (character->moveRight()) {
+                            // If take with me...
                             if (ClimberCharacter *climberCharacter = dynamic_cast<ClimberCharacter *>(character)) {
-                                if (climberCharacter->getTakeWithMe() &&
-                                    character2->getCardIndex() + 5 == character->getCardIndex()) {
+                                if (climberCharacter->getTakeWithMe() && character2->getCardIndex() + 5 == character->getCardIndex()) {
                                     character2->moveRight();
                                 }
                             }
@@ -1017,8 +1017,10 @@ void SinglePlayerGame::clickOnDefaultMode(ALL *allegro) {
             al_play_sample(allegro->clickOnButtonSound, allegro->volume, 0, 1, ALLEGRO_PLAYMODE_ONCE, NULL);
             if (modeEnum == MOVEOTHER) {
                 modeEnum = NORMAL;
-                character2->resetNumberOfMoves();
-                navigatorCharacter->decreseMoves();
+                if(navigatorCharacter->usedPartnerMoves()) {
+                    character2->resetNumberOfMoves();
+                    navigatorCharacter->decreseMoves();
+                }
             } else {
                 if (navigatorCharacter->haveMoves()) {
                     modeEnum = MOVEOTHER;

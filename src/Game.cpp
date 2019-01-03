@@ -702,6 +702,7 @@ void Game::initializeEquipmentCardButton(ALL *allegro) {
 }
 //! Key Methods
 void Game::keyEscape() {
+    // TODO: add more
     switch (modeEnum) {
         case DUNEBLASTERMODE:
             character->increaseDuneBlaster();
@@ -712,7 +713,15 @@ void Game::keyEscape() {
         case TERRASCOPEMODE:
             character->increaseTerrascope();
             break;
+        case MOVEOTHER:
+            if(NavigatorCharacter *navigatorCharacter = dynamic_cast<NavigatorCharacter *>(character)) {
+                if (navigatorCharacter->usedPartnerMoves()) {
+                    character2->resetNumberOfMoves();
+                    navigatorCharacter->decreseMoves();
+                }
+            } else { cout << "Error: move other not being a Navigator" << endl; }
     }
+    modeEnum = NORMAL;
 }
 //! Mouse Methods
 

@@ -13,6 +13,7 @@ public:
 
 	bool havePartnersMovesLeft() { return (partnerMovesLeft > 0); }
 	bool decresePartnerMoves();
+	bool usedPartnerMoves();
 
 	bool haveMoves() { return numberOfMoves > 0; }
 	void decreseMoves() { numberOfMoves--; }

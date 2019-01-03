@@ -35,6 +35,8 @@ void NavigatorCharacter::updateNavigator(ALL* allegro, bool moveState) {
 }
 void NavigatorCharacter::resetPartnerMoves() { partnerMovesLeft = 3; }
 
+bool NavigatorCharacter::usedPartnerMoves() { return !(partnerMovesLeft == 3); }
+
 bool NavigatorCharacter::decresePartnerMoves() { 
 	if (partnerMovesLeft > 0) { 
 		partnerMovesLeft--; 

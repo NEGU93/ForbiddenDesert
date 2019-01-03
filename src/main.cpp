@@ -8,6 +8,7 @@
 #include "MultiPlayerGame.hpp"
 
 /* ------------------- TODO -----------------------
+ *
 5. Para poder declarar variables arm� constructores por defecto vacios... estar�a bueno borrarlos y ponerle argumentos por defecto (diapositiva 10-Administraci�n de memoria, pagina 8)
 */
 
