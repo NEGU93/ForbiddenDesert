@@ -8,6 +8,11 @@
 #include "MultiPlayerGame.hpp"
 
 /* ------------------- TODO -----------------------
+ * TODO: poner numero de carta en peep mode
+ * TODO: Priority: request water no anda
+ * TODO: play again not working
+ * TODO:
+ *
  *
 5. Para poder declarar variables arm� constructores por defecto vacios... estar�a bueno borrarlos y ponerle argumentos por defecto (diapositiva 10-Administraci�n de memoria, pagina 8)
 */
@@ -78,9 +83,10 @@ int main() {
 	cout << "Players chosen. Ready to start game" << endl;
 	Game *game = nullptr;
 	do {
+	    cout << "Play again" << endl;
 		if (game != nullptr) {  // New game?
 			delete game;
-			gameNetwork->restart(allegro);
+			if(!singlePlayer) { gameNetwork->restart(allegro); }
 		}
 		if (singlePlayer) {
 		    game = new SinglePlayerGame(allegro, info);
@@ -94,7 +100,7 @@ int main() {
 		}
 		al_destroy_display(allegro->display); // If not I'll end up with 2 displays
 	} while (game->getPlayAgain() && !game->getGameOver()); // TODO: make them visible
-
+    cout << "End game. Thank you for playing" << endl;
 	if(!singlePlayer) {
         delete gameNetwork;
     }
