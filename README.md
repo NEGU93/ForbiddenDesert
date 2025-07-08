@@ -1,5 +1,7 @@
 # Forbidden Desert
 
+[![Lines of Code](https://tokei.rs/b1/github/NEGU93/ForbiddenDesert)](https://github.com/NEGU93/ForbiddenDesert)
+
 ## Installing
 
 ### Dependencies
